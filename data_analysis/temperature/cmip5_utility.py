@@ -47,11 +47,11 @@ class CMIP5:
 
 
 
-    def extrapolateDeltaTFxn(self, year, function):
-        return [self.estimateDeltaTFxn(i, function) for i in range(self.currentCO2[0], year + 1)]
+    def extrapolateDeltaTFxn(self, year, function, step=10):
+        return [self.estimateDeltaTFxn(i, function) for i in range(self.currentCO2[0], year + 1, step)]
 
 
-    def nationDeltaT(self, nation, year):
+    def nationDeltaT(self, nation, year,step=10):
         '''
         Returns a 2xN array with years and estimated DeltaT up to 'year' if, per capita, the whole world emitted like nation
         '''
@@ -62,27 +62,27 @@ class CMIP5:
                 break
 
         print(consumption)
-        return [[i for i in range(self.currentCO2[0],year+1)], [self.estimateDeltaTFxn(i, lambda x : self.pop * consumption / self.atmMass * 1e6 * (x - 2019) + self.currentCO2[1] ) for i in range(self.currentCO2[0], year + 1)]]
+        return [[i for i in range(self.currentCO2[0],year+1,step)], self.extrapolateDeltaTFxn(year, lambda x : self.pop * consumption / self.atmMass * 1e6 * (x - 2019) + self.currentCO2[1], step)]
 
-    def extrapolateDeltaT(self, emission, year):
+    def extrapolateDeltaT(self, emission, year, step=10):
         '''
         Returns a 2xN array with years & estimated deltaT for a given per-person 'emission', from present to year
         '''
 
-        return[[i for i in range(self.currentCO2[0],year+1)], self.extrapolateDeltaTFxn(year, lambda x : self.pop * emission / self.atmMass * 1e6 * (x - self.currentCO2[0]) + self.currentCO2[1])]
+        return[[i for i in range(self.currentCO2[0],year+1, step)], self.extrapolateDeltaTFxn(year, lambda x : self.pop * emission / self.atmMass * 1e6 * (x - self.currentCO2[0]) + self.currentCO2[1], step=step)]
 
 
-    def worstCase(self,year):
+    def worstCase(self,year,step=10):
         '''
         Returns a 2xN array with years and worst case scenario from model (largest DeltaT)
         '''
-        return [[i for i in range(self.currentCO2[0],year+1)], [np.interp(i, [2000, 2050, 2100, 2200, 2300, 2400, 2500], self.temp[3]) for i in range(self.currentCO2[0],year+1)]]
+        return [[i for i in range(self.currentCO2[0],year+1,step)], [np.interp(i, [2000, 2050, 2100, 2200, 2300, 2400, 2500], self.temp[3]) for i in range(self.currentCO2[0],year+1, step)]]
 
-    def bestCase(self,year):
+    def bestCase(self,year,step=10):
         '''
         Returns a 2xN array with years and best case scenario from model (smallest DeltaT)
         '''
-        return [[i for i in range(self.currentCO2[0],year+1)], [np.interp(i, [2000, 2050, 2100, 2200, 2300, 2400, 2500], self.temp[0]) for i in range(self.currentCO2[0],year+1)]]
+        return [[i for i in range(self.currentCO2[0],year+1, step)], [np.interp(i, [2000, 2050, 2100, 2200, 2300, 2400, 2500], self.temp[0]) for i in range(self.currentCO2[0],year+1, step)]]
 
 
 ### Test the code
@@ -91,9 +91,9 @@ class CMIP5:
 if __name__ == '__main__':
 
     myModel = CMIP5()
-    data = myModel.nationDeltaT('italy',2400)
+    data = myModel.nationDeltaT('italy',2400,step=50)
 
-    plt.plot(data[0],data[1])
+    plt.plot(data[0],data[1],'o')
 
     worst = myModel.worstCase(2400)
     plt.plot(worst[0], worst[1], 'r', label='Worst-case (RCP8.5)')
