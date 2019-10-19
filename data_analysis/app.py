@@ -104,7 +104,6 @@ def add_datapoint():
                 schema:
                     type: string
     """
-    
     dataPoint = request.json
     DataPoint.create(user=current_identity, gag=dataPoint.gag, time=datetime.fromtimestamp(dataPoint.time))
     return str(DataPoint.id)
