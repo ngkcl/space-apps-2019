@@ -7,6 +7,7 @@ from datetime import datetime
 from temperature.cmip5_utility import CMIP5
 from users.user import User, DataPoint
 from flasgger import Swagger
+from VehicleCalculator import VehicleCalculator
 
 cmip5 = CMIP5()
 
@@ -31,8 +32,8 @@ jwt = JWT(app, authenticate, identity)
 def index():
     return ""
 
-@app.route('/data/<emission>/')
-@app.route('/data/<emission>/<int:year>')
+@app.route('/data/temperature/<emission>/')
+@app.route('/data/temperature/<emission>/<int:year>')
 def emission(emission, year = 2200):
     step = 25
     return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [ 
@@ -41,10 +42,19 @@ def emission(emission, year = 2200):
         { 'color': '#AAA', 'data': cmip5.extrapolateDeltaT(float(emission), year, step=step)[1] }
     ]})
 
-@app.route('/data/<country>/')
-@app.route('/data/<country>/<int:year>')
+@app.route('/data/country/<country>/')
+@app.route('/data/country/<country>/<int:year>')
 def country(country, year = 2200):
     return jsonify({'worst': cmip5.worstCase(year), 'best': cmip5.bestCase(year), 'est': cmip5.nationDeltaT(country, year) })
+
+@app.route('/data/vehicle/<distance>/<time>')
+def vehicleArray(distance, time):
+    return jsonify({'vehicleArray': VehicleCalculator.vehicleCalc(distance, time)})
+
+@app.route('/data/polution/<vehicle>')
+def polutionOut(vehicle):
+    return jsonify({'carbonDioxideGrams': VehicleCalculator.polutionCalc(vehicle)})
+
 
 
 @app.route('/user/register', methods=['POST'])

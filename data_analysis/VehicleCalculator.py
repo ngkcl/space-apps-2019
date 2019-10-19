@@ -8,12 +8,9 @@ class VehicleCalculator():
 	maxWalkSpeed = 9.65606
 	maxTrainSpeed = 300
 
-	def __init__(self, distance, time):
+	def vehicleCalc(self, distance, time):
 		self.distance = distance
 		self.speed = distance/time
-
-
-	def vehicleCalc(self):
 		options = []
 		if(0 < self.speed < self.maxWalkSpeed):
 			options.append("Walking")
