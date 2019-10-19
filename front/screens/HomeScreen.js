@@ -18,6 +18,13 @@ import Constants from 'expo-constants';
 import * as Animatable from 'react-native-animatable';
 
 import {
+  getNearby,
+  getNearest  
+} from '../functions/geoFenceLocal';
+
+import timeout from '../functions/timeout';
+
+import {
     getLocationAsync,
     watchLocationAsync,
     enableBackgroundLocationAsync
@@ -37,27 +44,50 @@ class HomeScreen extends React.Component {
         super(props);
 
         this.state = {
-            location: this.props.location || DEFAULT_REGION,
-            place: "KFC",
-            toastVisible: false
+            place: {},
+            toastVisible: false,
+            shouldRenderToast: false
         }
     }
 
     componentDidMount() {
         this.props.watchLocationAsync();
         this.props.enableBackgroundLocationAsync();
-
-        let interval = setInterval(() => {
-            this.setState({
-                toastVisible: !this.state.toastVisible
-            })
-        }, 5000)
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps, prevState) {
+        let { location } = this.props;
+        let place = getNearest(location.coordinate.latitude, location.coordinate.longitude, 0.010);
+        if (place) {
+            this.pushToast(place.name, "food");
+        }
+    }
+
+    pushToast = async (name = "KFC", type = "food") => {
+        await timeout(2000);
+        this.place = {
+            name,
+            type
+        }
         this.setState({
-            location: nextProps.location
-        });
+            toastVisible: true,
+            shouldRenderToast: true
+        }, async () => {
+            await timeout(4000);
+            this.setState({
+                toastVisible: false
+            })
+        })
+        
+    }
+
+    _renderToast = (placeName, type) => {
+        if (this.state.shouldRenderToast) {
+            return(<Toast
+                visible={this.state.toastVisible}
+                {...this.place}
+            />)
+        } else return null;
     }
 
     render() {
@@ -65,16 +95,13 @@ class HomeScreen extends React.Component {
         <View
             style={styles.container}
         >
-            <Toast 
-                visible={this.state.toastVisible}
-                place={"KFC"}
-                type={"food"}
-            />
+            {this._renderToast()}
             <MapView
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
                 region={{
-                    ...this.state.location.coordinate,
+                    ...DEFAULT_REGION,
+                    ...this.props.location.coordinate,
                     longitudeDelta: 0.001,
                     latitudeDelta: 0.001
                 }}

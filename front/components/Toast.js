@@ -32,10 +32,10 @@ export default class Toast extends Component {
     
     getAnimation = () => this.state.visible ? "bounceInDown" : "bounceOutUp"
 
-    _getPlace = () => this.state.place
+    _getPlace = () => this.props.name
 
     _getQuestion = () => {
-        switch(this.state.type) {
+        switch(this.props.type) {
             case "food":
                 return "Did you eat something?"
             case "bar":
@@ -55,8 +55,7 @@ export default class Toast extends Component {
             duration={2000}
         >
             <Text style={styles.text1}>
-            You are detected to be in {this._getPlace()}.
-            {this._getQuestion()}
+                You are detected to be in {this._getPlace()}. {this._getQuestion()}
             </Text>
             <Text style={styles.buttonText} onPress={this.bounce}>Add</Text>
             <Image
@@ -77,23 +76,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     opacity: 1,
     justifyContent: "space-between",
-    padding: 24,
+    padding: 25,
     marginTop: Constants.statusBarHeight + 15,
     borderRadius: 2
   },
   text1: {
-    width: 169,
-    height: 40,
+    width: 170,
+    height: 50,
     color: "rgba(255,255,255,1)",
     marginLeft: 57,
-    fontSize: 12,
-    lineHeight: 20
+    marginRight: 10,
+    fontSize: 14,
+    lineHeight: 15,
+    flexWrap: 'wrap'
   },
   buttonText: {
     width: 25,
     height: 14,
     color: "#4CAF50",
-    marginLeft: 12,
     fontSize: 14
   },
   image: {
