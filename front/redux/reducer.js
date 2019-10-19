@@ -7,7 +7,8 @@ import {
 
     WATCH_LOCATION_START, 
     WATCH_LOCATION_FAIL, 
-    WATCH_LOCATION_SUCCESS
+    WATCH_LOCATION_SUCCESS,
+    BACKGROUND_LOCATION_UPDATE
 } from './actions';
 
 import { combineReducers } from 'redux';
@@ -44,7 +45,8 @@ const locationReducer = (state = DEFAULT_LOCATION_STATE, action) => {
 			return merge(state, {isFetching: false, didFail: true, error: action.payload});
 		case GET_LOCATION_SUCCESS:
         case WATCH_LOCATION_SUCCESS:
-			return merge(state, {isFetching: false, coordinate: {...action.payload.coords}});
+        case BACKGROUND_LOCATION_UPDATE:
+            return merge(state, {isFetching: false, coordinate: {...action.payload.coords}});
 		default:
 			return state
 	}

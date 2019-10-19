@@ -13,13 +13,16 @@ import MapView, {
 
 import { connect } from 'react-redux';
 
+import * as TaskManager from 'expo-task-manager';
+
 import Map from '../components/Map';
 
 import Qs from 'qs';
 
 import {
     getLocationAsync,
-    watchLocationAsync
+    watchLocationAsync,
+    enableBackgroundLocationAsync
 } from '../redux/actions';
 
 const DEFAULT_REGION = {
@@ -40,6 +43,7 @@ class HomeScreen extends React.Component {
 
     componentDidMount() {
         this.props.watchLocationAsync();
+        this.props.enableBackgroundLocationAsync();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -93,7 +97,10 @@ const mapDispatchToProps = dispatch => ({
     },
 	watchLocationAsync: () => {
 		dispatch(watchLocationAsync())
-	}
+    },
+    enableBackgroundLocationAsync: () => {
+        dispatch(enableBackgroundLocationAsync())
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
