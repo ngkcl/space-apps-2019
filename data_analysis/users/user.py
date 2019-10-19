@@ -25,3 +25,8 @@ class DataPoint(Model):
 if __name__ == "__main__":
     User.create_table()
     DataPoint.create_table()
+
+
+def avgQuery():
+    return DataPoint.select(fn.avg(Datapoint.gag).alias('emission_avg'), DataPoint.time).\
+    where(Datapoint.time.between(7daysago,now)).dicts()['emission_avg']
