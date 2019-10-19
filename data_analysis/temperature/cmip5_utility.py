@@ -96,13 +96,19 @@ class CMIP5:
             return 3000
 
 
+    def extrapolateOwnDeltaT(self, deltaEmission, year, step=10):
+        return self.extrapolateDeltaT(deltaEmission + 8.45887827, year, step=step)
+
+
 ### Test the code
 
 
 if __name__ == '__main__':
 
     myModel = CMIP5()
-    data = myModel.nationDeltaT('united kingdom',2400,step=50)
+    # data = myModel.nationDeltaT('united kingdom',2400,step=50)
+    data = myModel.extrapolateOwnDeltaT(-1,2400)
+
 
     plt.plot(data[0],data[1])
 
