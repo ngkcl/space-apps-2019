@@ -19,7 +19,6 @@ import {
 // Redux:
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { loadProperties, getLocationAsync, addFilter } from './redux/actions';
 
 
 import { 
@@ -31,17 +30,28 @@ import {
 // Screens:
 import HomeScreen from './screens/HomeScreen';
 import UserScreen from './screens/UserScreen';
+import AddScreen from './screens/AddScreen';
+
+import AddButton from './components/AddButton';
 
 const TabNavigator = createBottomTabNavigator({
   Map: {
     screen: HomeScreen
   },
+  Add: {
+    screen: AddScreen,
+    navigationOptions: ({navigation}) => ({
+      tabBarIcon: (<AddButton navigation={navigation}/>),
+      tabBarLabel: ""
+    })
+  },
   User: {
     screen: UserScreen
-  }
+  },
 }, {
   defaultNavigationOptions: ({navigation}) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
+      // tintColor = ''
       const { routeName } = navigation.state;
 
       let IconComponent = MaterialCommunityIcons;
@@ -55,9 +65,9 @@ const TabNavigator = createBottomTabNavigator({
       return <IconComponent name={iconName} size={25} color={tintColor} />;
     }
   }),
-  tabBarOptions: ({navigation}) => ({
-    activeTintColor: 'tomato',
-    inactiveTintColor: 'gray'
+  tabBarOptions: ({navigation}) =>  ({
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
   }),
   initialRouteName: 'Map'
 });
@@ -68,7 +78,10 @@ const HomeStack = createStackNavigator({
     navigationOptions: {
       header: null
     }
-  }
+  },
+  // Add: {
+  //   screen: AddScreen
+  // }
 })
 
 const AppContainer = createAppContainer(HomeStack);
