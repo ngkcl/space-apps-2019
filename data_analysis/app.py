@@ -35,17 +35,36 @@ def index():
 @app.route('/data/temperature/<emission>/')
 @app.route('/data/temperature/<emission>/<int:year>')
 def emission(emission, year = 2200):
+    """
+    emissions with year
+    ---
+    produces:
+      -application/json
+    parameters:
+      - in: path
+        name: emission
+        required: true
+        schema:
+            type: integer
+        description: emission per year in metric tons
+      - in: path
+        name: year
+        required: false
+        schema:
+            type: integer
+        description: Final year for graph, default 2200
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     step = 25
     return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [ 
         { 'color': 'red', 'data': cmip5.worstCase(year, step=step)[1] }, 
         { 'color': 'green', 'data': cmip5.bestCase(year, step=step)[1] },
         { 'color': '#AAA', 'data': cmip5.extrapolateDeltaT(float(emission), year, step=step)[1] }
     ]})
-
-@app.route('/data/country/<country>/')
-@app.route('/data/country/<country>/<int:year>')
-def country(country, year = 2200):
-    return jsonify({'worst': cmip5.worstCase(year), 'best': cmip5.bestCase(year), 'est': cmip5.nationDeltaT(country, year) })
 
 @app.route('/data/vehicle/<distance>/<time>')
 def vehicleArray(distance, time):
