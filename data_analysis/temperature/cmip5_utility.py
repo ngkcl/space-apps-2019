@@ -93,9 +93,9 @@ class CMIP5:
 if __name__ == '__main__':
 
     myModel = CMIP5()
-    data = myModel.nationDeltaT('italy',2400,step=50)
+    data = myModel.nationDeltaT('united kingdom',2400,step=50)
 
-    plt.plot(data[0],data[1],'o')
+    plt.plot(data[0],data[1])
 
     worst = myModel.worstCase(2400)
     plt.plot(worst[0], worst[1], 'r', label='Worst-case (RCP8.5)')

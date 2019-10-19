@@ -25,3 +25,5 @@ def query(name):
 
 def getData(name):
     return [[i['name'], i['cost']] for i in query('*' + name.replace(' ', '*') + '*')]
+
+print(getData('Be'))
