@@ -49,11 +49,59 @@ def country(country, year = 2200):
 
 @app.route('/data/vehicle/<distance>/<time>')
 def vehicleArray(distance, time):
-    return jsonify({'vehicleArray': VehicleCalculator.vehicleCalc(distance, time)})
+    """
+    Possible Vehicle
+    ---
+    produces:
+      -application/json
+    parameters:
+      - in: path
+        name: distance
+        required: true
+        schema:
+            type: number
+        description: Takes distance travelled in km
+      - in: path
+        name: time
+        required: true
+        schema:
+            type: integer
+        description: Takes time in which distance was travelled in seconds
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
+    return jsonify({'vehicleArray': VehicleCalculator.vehicleCalc(float(distance), float(time))})
 
-@app.route('/data/polution/<vehicle>')
-def polutionOut(vehicle):
-    return jsonify({'carbonDioxideGrams': VehicleCalculator.polutionCalc(vehicle)})
+@app.route('/data/polution/<vehicle>/<distance>')
+def polutionOut(vehicle, distance):
+    """
+    Polution out
+    ---
+    produces:
+      -application/json
+    parameters:
+      - in: path
+        name: vehicle
+        required: true
+        schema:
+            type: string
+        description: Take vehicle either "car", "train", "flight", "car", "bus", "coach", "walking"
+      - in: path
+        name: distance
+        required: true
+        schema:
+            type: numbers
+        description: Take distance in km 
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
+    return jsonify({'carbonDioxideGrams': VehicleCalculator.polutionCalc(vehicle, float(distance))})
 
 
 

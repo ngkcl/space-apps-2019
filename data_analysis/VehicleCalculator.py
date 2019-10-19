@@ -8,26 +8,25 @@ class VehicleCalculator():
 	maxWalkSpeed = 9.65606
 	maxTrainSpeed = 300
 
-	def vehicleCalc(self, distance, time):
-		self.distance = distance
-		self.speed = distance/time
+	@staticmethod
+	def vehicleCalc(distance, time):
+		hourtime = time / 3600
+		speed = distance/hourtime
 		options = []
-		if(0 < self.speed < self.maxWalkSpeed):
+		if(0 < speed < VehicleCalculator.maxWalkSpeed):
 			options.append("Walking")
-		elif(self.maxWalkSpeed <= self.speed < self.maxTrainSpeed):
+		elif(VehicleCalculator.maxWalkSpeed <= speed < VehicleCalculator.maxTrainSpeed):
 			options.append("Car")
 			options.append("Bus")
 			options.append("Train")
-		elif(self.maxTrainSpeed <= self.speed):
+			options.append("Coach")
+		elif(VehicleCalculator.maxTrainSpeed <= speed):
 			options.append("Flight")
 
 		return options
 
-	def polutionCalc(self, vehicle):
-		return(self.distance * eval('self.' + vehicle))
+	@staticmethod
+	def polutionCalc(vehicle, distance):
+		return(distance * eval('VehicleCalculator.'+ vehicle.lower()))
 
-
-vroom = VehicleCalculator(300, 0.03)
-print(vroom.vehicleCalc())
-print(vroom.polutionCalc("flight"))
 
