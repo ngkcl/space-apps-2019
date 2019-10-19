@@ -73,7 +73,7 @@ export const watchLocationAsync = () => async dispatch => {
     }
 	try {
 		let location = await Location.watchPositionAsync({
-            distanceInterval: 1,
+            distanceInterval: 20,
         }, location => {
 			// alertTaskStatus();
             dispatch({

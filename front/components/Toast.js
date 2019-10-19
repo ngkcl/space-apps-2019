@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+
 import { StyleSheet, View, Text, Image } from "react-native";
-// import { Center } from "native-base";
+
 import * as Animatable from 'react-native-animatable';
 
 import foodPic from '../assets/groceries.png';
 
 import Constants from 'expo-constants';
 
-import { Button } from "native-base";
+import { withNavigation } from 'react-navigation';
 
-export default class Toast extends Component {
+class Toast extends Component {
     constructor(props) {
         super(props);
 
@@ -57,7 +58,7 @@ export default class Toast extends Component {
             <Text style={styles.text1}>
                 You are detected to be in {this._getPlace()}. {this._getQuestion()}
             </Text>
-            <Text style={styles.buttonText} onPress={this.bounce}>Add</Text>
+            <Text style={styles.buttonText} onPress={() => this.props.navigation.navigate('Add')}>Add</Text>
             <Image
                 source={foodPic}
                 resizeMode="contain"
@@ -103,3 +104,6 @@ const styles = StyleSheet.create({
     position: "absolute"
   }
 });
+
+
+export default withNavigation(Toast);
