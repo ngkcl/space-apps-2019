@@ -37,5 +37,6 @@ class FoodEmission():
 
     def foodAverage():
         meanEmission = foodPercent * UK_avg
+        yourMean = avgQuery()
 
-        yourMean =
+        return yourMean - meanEmission # If you're more efficient than the mean, we reduce your avg emission score
