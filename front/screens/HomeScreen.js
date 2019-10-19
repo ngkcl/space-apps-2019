@@ -13,17 +13,17 @@ import MapView, {
 
 import { connect } from 'react-redux';
 
-import * as TaskManager from 'expo-task-manager';
+import Constants from 'expo-constants';
 
-import Map from '../components/Map';
-
-import Qs from 'qs';
+import * as Animatable from 'react-native-animatable';
 
 import {
     getLocationAsync,
     watchLocationAsync,
     enableBackgroundLocationAsync
 } from '../redux/actions';
+
+import Toast from '../components/Toast';
 
 const DEFAULT_REGION = {
     latitude: 37.78825,
@@ -37,13 +37,21 @@ class HomeScreen extends React.Component {
         super(props);
 
         this.state = {
-            location: this.props.location || DEFAULT_REGION
+            location: this.props.location || DEFAULT_REGION,
+            place: "KFC",
+            toastVisible: false
         }
     }
 
     componentDidMount() {
         this.props.watchLocationAsync();
         this.props.enableBackgroundLocationAsync();
+
+        let interval = setInterval(() => {
+            this.setState({
+                toastVisible: !this.state.toastVisible
+            })
+        }, 5000)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -57,6 +65,11 @@ class HomeScreen extends React.Component {
         <View
             style={styles.container}
         >
+            <Toast 
+                visible={this.state.toastVisible}
+                place={"KFC"}
+                type={"food"}
+            />
             <MapView
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
@@ -66,7 +79,6 @@ class HomeScreen extends React.Component {
                     latitudeDelta: 0.001
                 }}
             >
-
             </MapView>
         </View> 
         );
@@ -76,12 +88,21 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        width: "100%"
     }, 
     map: {
         flex: 1,
         width: '100%',
-        height: '100%'
+        height: '100%',
+        zIndex: -10
+    },
+    toastButton: {
+        backgroundColor: "red"
+    },
+    toastStyle: {
+        backgroundColor: "white",
+        height: 70
     }
 })
 

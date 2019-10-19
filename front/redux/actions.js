@@ -75,7 +75,7 @@ export const watchLocationAsync = () => async dispatch => {
 		let location = await Location.watchPositionAsync({
             distanceInterval: 1,
         }, location => {
-			alertTaskStatus();
+			// alertTaskStatus();
             dispatch({
                 type: WATCH_LOCATION_SUCCESS,
                 payload: location
@@ -92,8 +92,7 @@ export const watchLocationAsync = () => async dispatch => {
 export const updateBackgroundLocation = location => ({
 	type: BACKGROUND_LOCATION_UPDATE,
 	payload: location
-})
-
+});
 
 TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) => {
     if (error) {
@@ -107,7 +106,6 @@ TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) =
 	}
 });
 
-// TODO: Finish after watch location
 export const enableBackgroundLocationAsync = () => async dispatch => {
     dispatch({ type: ENABLE_BACKGROUND_LOCATION_START });
 	let { status } = await Permissions.askAsync(Permissions.LOCATION);
