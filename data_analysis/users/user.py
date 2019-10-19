@@ -1,13 +1,14 @@
 from peewee import *
 from playhouse.sqlite_ext import *
-import os
+from os.path import dirname, abspath
 
-db = SqliteDatabase(os.path.dirname(__file__) + 'user.db')
+
+
+db = SqliteDatabase(dirname(abspath(__file__)) + '/user.db')
 
 class User(Model):
     username = TextField()
     password = TextField()
-    food_emissions = DoubleField()
 
     class Meta:
         database = db
@@ -27,6 +28,8 @@ if __name__ == "__main__":
     DataPoint.create_table()
 
 
-def avgQuery():
-    return DataPoint.select(fn.avg(Datapoint.gag).alias('emission_avg'), DataPoint.time).\
-    where(Datapoint.time.between(7daysago,now)).dicts()['emission_avg']
+def avgQuery(user_id):
+    return (DataPoint
+        .select(fn.avg(DataPoint.gag).alias('emission_avg'))
+        .where(DataPoint.time.between("7daysago", "now") and DataPoint.user == user_id)
+        .dicts()['emission_avg'])
