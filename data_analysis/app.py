@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_jwt import JWT, jwt_required, current_identity
 
 from playhouse.shortcuts import model_to_dict, dict_to_model
+from datetime import datetime
 
 from temperature.cmip5_utility import CMIP5
 from users.user import User, DataPoint
@@ -77,7 +78,38 @@ def register():
         User.create(username=user['username'], password=user['password'], food_emissions=0).id
     )
 
+@app.route("/user/datapoint", methods=["POST"])
+def add_datapoint():
+     """
+    Register yourself
+    ---
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: datapoint
+        description: JSON data point.
+        schema:
+            type: object
+            properties:
+                gag:
+                    type: number
+                time:
+                    type: integer
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
+    
+    dataPoint = request.json
+    DataPoint.create(user=current_identity, gag=dataPoint.gag, time=datetime.fromtimestamp(dataPoint.time))
+    return str(DataPoint.id)
 
+@jwt_required()
 @app.route("/login", methods=["POST"])
 def login():
     """
