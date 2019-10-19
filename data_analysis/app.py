@@ -1,5 +1,8 @@
 from flask import Flask, jsonify
-from cmip5_utility import CMIP5
+from flask_jwt import JWT, jwt_required, current_identity
+
+from temperature.cmip5_utility import CMIP5
+from user.user import User, DataPoint
 
 cmip5 = CMIP5()
 

@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+
 
 
 class CMIP5:
@@ -17,15 +19,15 @@ class CMIP5:
     pop = 7.7e9 / 3
 
     def __init__(self):
-        rcp2 = np.genfromtxt('rcp2.6.txt')
-        rcp4 = np.genfromtxt('rcp4.5.txt')
-        rcp6 = np.genfromtxt('rcp6.0.txt')
-        rcp8 = np.genfromtxt('rcp8.5.txt')
+        rcp2 = np.genfromtxt(os.path.dirname(__file__) + '/rcp2.6.txt')
+        rcp4 = np.genfromtxt(os.path.dirname(__file__) + '/rcp4.5.txt')
+        rcp6 = np.genfromtxt(os.path.dirname(__file__) + '/rcp6.0.txt')
+        rcp8 = np.genfromtxt(os.path.dirname(__file__) + '/rcp8.5.txt')
 
         self.gasLevels = [rcp2,rcp4,rcp6,rcp8]
 
-        self.temp = np.genfromtxt('temp_increase.txt')
-        self.popConsumption = np.genfromtxt('consumption_per_capita.txt', delimiter=',',dtype=np.dtype('a'))
+        self.temp = np.genfromtxt(os.path.dirname(__file__) + '/temp_increase.txt')
+        self.popConsumption = np.genfromtxt(os.path.dirname(__file__) + '/consumption_per_capita.txt', delimiter=',',dtype=np.dtype('a'))
 
 
     def estimateDeltaTFxn(self, year, function):

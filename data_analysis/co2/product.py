@@ -1,7 +1,8 @@
 from peewee import *
 from playhouse.sqlite_ext import *
+import os
 
-productDb = SqliteDatabase('product.db')
+productDb = SqliteDatabase(os.path.dirname(__file__) + 'product.db')
 
 class ProductFTS(FTSModel):
     name = TextField()
