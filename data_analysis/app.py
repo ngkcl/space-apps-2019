@@ -80,7 +80,7 @@ def register():
 
 @app.route("/user/datapoint", methods=["POST"])
 def add_datapoint():
-     """
+    """
     Register yourself
     ---
     consumes:
