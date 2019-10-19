@@ -1,0 +1,8 @@
+<class 'netCDF4._netCDF4.Variable'>
+float32 can_temp(lat, lon)
+    units: C
+    long_name: CANOPY TEMPERATURE
+    missing_value: -1e+30
+unlimited dimensions: 
+current shape = (90, 144)
+filling on, default _FillValue of 9.969209968386869e+36 used
