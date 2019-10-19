@@ -1,16 +1,9 @@
 {
-  "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-<<<<<<< HEAD
-  "packagerPid": 8496,
-  "expoServerNgrokUrl": "https://ds-aka.hjklmn.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.ds-aka.hjklmn.front.exp.direct",
-  "ngrokPid": 8602
-=======
-  "packagerPid": 339316,
   "expoServerNgrokUrl": "https://ds-aka.anonymous.front.exp.direct",
   "packagerNgrokUrl": "https://packager.ds-aka.anonymous.front.exp.direct",
-  "ngrokPid": 339355
->>>>>>> better home graphs
+  "ngrokPid": 360812,
+  "devToolsPort": 19002,
+  "packagerPort": null,
+  "packagerPid": null
 }

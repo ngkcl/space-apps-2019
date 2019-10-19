@@ -16,9 +16,9 @@ import {
 
 const chartConfig = {
     backgroundGradientFrom: '#AAA',
-    backgroundGradientFromOpacity: 1,
+    backgroundGradientFromOpacity: 0,
     backgroundGradientTo: '#AAA',
-    backgroundGradientToOpacity: 1,
+    backgroundGradientToOpacity: 0,
     color: (opacity = 1) => `rgba(44, 44, 44, ${opacity})`,
     // strokeWidth: 2, // optional, default 3
     // barPercentage:0.5
@@ -37,12 +37,12 @@ class UserScreen extends React.Component {
 
     async componentDidMount() {
         
-            let data = await fetch("http://10.70.43.220:5000/data/5/2100")
+            let data = await fetch("http://10.70.43.220:5000/data/5/2200")
             let result = await data.json()
 
             this.setState({ 
                 labels: result.labels,
-                datasets: result.datasets.map(dataset => ({ data: dataset })) 
+                datasets: result.datasets.map(dataset => ({ ...dataset, color: (o) => dataset.color })) 
             })
     }
 
@@ -59,10 +59,9 @@ class UserScreen extends React.Component {
                     }}
                     width={this.state.screenWidth}
                     height={256}
-                    verticalLabelRotation={30}
+                    // verticalLabelRotation={30}
                     chartConfig={chartConfig}
-                    withDots={false}
-                    bezier
+                    // withDots={false}
                     style={{
                         borderRadius: 16,
                         marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(1)
