@@ -29,7 +29,7 @@ atmMass = 5.1e15
 
 # get polluting world population (rough estimate of total consumer pollution abt. 1/3?)
 
-pop = 7.7e9 / 3
+pop = 7.7e9
 
 yearlyInc = pop * singleEmission / atmMass * 1e6
 
@@ -67,7 +67,7 @@ def estimateDeltaT(year, function):
     # print(curveIntegral)
     # print([np.interp(year, [2050, 2100, 2200, 2300, 2400, 2500], i) for i in temp])
 
-    coeff = np.polyfit(curveIntegral, [np.interp(year, [2050, 2100, 2200, 2300, 2400, 2500], i) for i in temp], 1)
+    coeff = np.polyfit(curveIntegral, [np.interp(year, [2000, 2050, 2100, 2200, 2300, 2400, 2500], i) for i in temp], 1)
     return np.poly1d(coeff)(fxnIntegral)
 
     #return np.interp(fxnIntegral,curveIntegral,[np.interp(year, [2050, 2100, 2200, 2300, 2400, 2500], i) for i in temp])
@@ -97,8 +97,8 @@ yearlyInc = 2.3
 plt.plot([i for i in range(2019,2401)], nationDeltaT('bulgaria',2400), 'k', label='Prediction for given footprint')
 
 
-plt.plot([2050, 2100, 2200, 2300, 2400, 2500], temp[3], 'r', label='Worst-case (RCP8.5)')
-plt.plot([2050, 2100, 2200, 2300, 2400, 2500], temp[0], 'b',label='Best-case (RCP2.6)')
+plt.plot([2000, 2050, 2100, 2200, 2300, 2400, 2500], temp[3], 'r', label='Worst-case (RCP8.5)')
+plt.plot([2000, 2050, 2100, 2200, 2300, 2400, 2500], temp[0], 'b',label='Best-case (RCP2.6)')
 
 plt.xlabel('Year')
 plt.ylabel('Abnormal Temperature increase from mean for 1965-2000')
