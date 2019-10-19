@@ -1,11 +1,39 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+// Nav:
+import {
+  createAppContainer,
+} from 'react-navigation';
+
+import {
+  createStackNavigator
+} from 'react-navigation-stack'
+
+// Redux:
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { loadProperties, getLocationAsync, addFilter } from './redux/actions';
+
+// Screens:
+import HomeScreen from './screens/HomeScreen';
+
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: null
+    }
+  }
+})
+
+const AppContainer = createAppContainer(HomeStack);
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
   );
 }
 
