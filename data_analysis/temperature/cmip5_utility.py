@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import os
+from scipy import optimize
+from os.path import abspath, dirname
 
 
 
@@ -19,15 +20,15 @@ class CMIP5:
     pop = 7.7e9 / 3
 
     def __init__(self):
-        rcp2 = np.genfromtxt(os.path.dirname(__file__) + '/rcp2.6.txt')
-        rcp4 = np.genfromtxt(os.path.dirname(__file__) + '/rcp4.5.txt')
-        rcp6 = np.genfromtxt(os.path.dirname(__file__) + '/rcp6.0.txt')
-        rcp8 = np.genfromtxt(os.path.dirname(__file__) + '/rcp8.5.txt')
+        rcp2 = np.genfromtxt(dirname(abspath(__file__)) + '/rcp2.6.txt')
+        rcp4 = np.genfromtxt(dirname(abspath(__file__)) + '/rcp4.5.txt')
+        rcp6 = np.genfromtxt(dirname(abspath(__file__)) + '/rcp6.0.txt')
+        rcp8 = np.genfromtxt(dirname(abspath(__file__)) + '/rcp8.5.txt')
 
         self.gasLevels = [rcp2,rcp4,rcp6,rcp8]
 
-        self.temp = np.genfromtxt(os.path.dirname(__file__) + '/temp_increase.txt')
-        self.popConsumption = np.genfromtxt(os.path.dirname(__file__) + '/consumption_per_capita.txt', delimiter=',',dtype=np.dtype('a'))
+        self.temp = np.genfromtxt(dirname(abspath(__file__)) + '/temp_increase.txt')
+        self.popConsumption = np.genfromtxt(dirname(abspath(__file__)) + '/consumption_per_capita.txt', delimiter=',',dtype=np.dtype('a'))
 
 
     def estimateDeltaTFxn(self, year, function):
@@ -87,6 +88,14 @@ class CMIP5:
         return [[i for i in range(self.currentCO2[0],year+1, step)], [np.interp(i, [2000, 2050, 2100, 2200, 2300, 2400, 2500], self.temp[0]) for i in range(self.currentCO2[0],year+1, step)]]
 
 
+    def invTrace(self, emission, deltaT):
+        data = self.extrapolateDeltaT(emission,2500)
+        try:
+            return int(optimize.brentq(lambda x: np.interp(x,data[0],data[1]) - deltaT, 2020, 2500))
+        except:
+            return 3000
+
+
 ### Test the code
 
 
@@ -96,6 +105,8 @@ if __name__ == '__main__':
     data = myModel.nationDeltaT('united kingdom',2400,step=50)
 
     plt.plot(data[0],data[1])
+
+    print(myModel.invTrace(8.2, 2))
 
     worst = myModel.worstCase(2400)
     plt.plot(worst[0], worst[1], 'r', label='Worst-case (RCP8.5)')

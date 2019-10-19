@@ -39,4 +39,4 @@ class FoodEmission():
         meanEmission = foodPercent * UK_avg
         yourMean = avgQuery()
 
-        return yourMean - meanEmission # If you're more efficient than the mean, we reduce your avg emission score
+        return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score
