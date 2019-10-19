@@ -2,7 +2,7 @@ from peewee import *
 from playhouse.sqlite_ext import *
 import os
 
-db = SqliteDatabase(os.path.dirname(__file__) + 'user.db')
+db = SqliteDatabase(os.path.dirname(__file__) + '/user.db')
 
 class User(Model):
     username = TextField()
