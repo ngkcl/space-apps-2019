@@ -23,16 +23,29 @@ export default class Toast extends Component {
     bounce = () => this.view.bounce(800).then(endState => console.log(endState.finished ? 'bounce finished' : 'bounce cancelled'));
 
     componentWillReceiveProps(nextProps) {
-
         this.setState({
-            visible: nextProps.visible
-        })
+            visible: nextProps.visible,
+            place: nextProps.place,
+            type: nextProps.type
+        });
     }
     
     getAnimation = () => this.state.visible ? "bounceInDown" : "bounceOutUp"
 
-    render() {
-		
+    _getPlace = () => this.state.place
+
+    _getQuestion = () => {
+        switch(this.state.type) {
+            case "food":
+                return "Did you eat something?"
+            case "bar":
+                return "Did you drink something?"
+            default: 
+                return "Did you get something?"
+        }
+    }
+
+    render() {	
         return (
         <Animatable.View 
             style={[styles.container, this.props.style]} 
@@ -42,8 +55,8 @@ export default class Toast extends Component {
             duration={2000}
         >
             <Text style={styles.text1}>
-            You are detected to be in KFC.
-            Did you eat something?
+            You are detected to be in {this._getPlace()}.
+            {this._getQuestion()}
             </Text>
             <Text style={styles.buttonText} onPress={this.bounce}>Add</Text>
             <Image

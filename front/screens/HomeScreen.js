@@ -25,13 +25,6 @@ import {
 
 import Toast from '../components/Toast';
 
-// import {
-//     Button,
-//     Text,
-//     Content,
-//     Container
-// } from 'native-base'
-
 const DEFAULT_REGION = {
     latitude: 37.78825,
     longitude: -122.4324,
@@ -45,10 +38,9 @@ class HomeScreen extends React.Component {
 
         this.state = {
             location: this.props.location || DEFAULT_REGION,
+            place: "KFC",
             toastVisible: false
         }
-
-        this._visible = false;
     }
 
     componentDidMount() {
@@ -73,7 +65,11 @@ class HomeScreen extends React.Component {
         <View
             style={styles.container}
         >
-            <Toast visible={this.state.toastVisible}/>
+            <Toast 
+                visible={this.state.toastVisible}
+                place={"KFC"}
+                type={"food"}
+            />
             <MapView
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
