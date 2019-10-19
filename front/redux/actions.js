@@ -13,6 +13,14 @@ export const WATCH_LOCATION_START = 'WATCH_LOCATION_START';
 export const WATCH_LOCATION_FAIL = 'WATCH_LOCATION_FAIL';
 export const WATCH_LOCATION_SUCCESS = 'WATCH_LOCATION_SUCCESS';
 
+export const ENABLE_BACKGROUND_LOCATION_START = 'ENABLE_BACKGROUND_LOCATION_START';
+export const ENABLE_BACKGROUND_LOCATION_FAIL = 'ENABLE_BACKGROUND_LOCATION_FAIL';
+export const ENABLE_BACKGROUND_LOCATION_SUCCESS = 'ENABLE_BACKGROUND_LOCATION_SUCCESS';
+
+export const BACKGROUND_LOCATION_UPDATE = "BACKGROUND_LOCATION_UPDATE";
+
+
+
 export const addDataPoint = data => ({
     type: ADD_DATA_POINT,
     payload: data
@@ -46,9 +54,13 @@ export const getLocationAsync = () => async dispatch => {
 	}
 }
 
+const alertTaskStatus = async () => {
+	alert(await TaskManager.isTaskRegisteredAsync("BACKGROUND_LOCATION"))
+}
 
 export const watchLocationAsync = () => async dispatch => {
-    dispatch({ type: WATCH_LOCATION_START });
+	dispatch({ type: WATCH_LOCATION_START });
+	
 
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
 
@@ -61,8 +73,9 @@ export const watchLocationAsync = () => async dispatch => {
     }
 	try {
 		let location = await Location.watchPositionAsync({
-            distanceInterval: 20,
+            distanceInterval: 1,
         }, location => {
+			alertTaskStatus();
             dispatch({
                 type: WATCH_LOCATION_SUCCESS,
                 payload: location
@@ -76,38 +89,55 @@ export const watchLocationAsync = () => async dispatch => {
 	}
 }
 
+export const updateBackgroundLocation = location => ({
+	type: BACKGROUND_LOCATION_UPDATE,
+	payload: location
+})
+
+
+TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) => {
+    if (error) {
+        return;
+    }
+    for (i in locations) {
+        alert(i);
+    }
+    for (loc in locations) {
+		updateBackgroundLocation(loc);
+	}
+});
 
 // TODO: Finish after watch location
-export const backgroundLocationAsync = () => async dispatch => {
-    dispatch({ type: BACKGROUND_LOCATION_START });
+export const enableBackgroundLocationAsync = () => async dispatch => {
+    dispatch({ type: ENABLE_BACKGROUND_LOCATION_START });
 	let { status } = await Permissions.askAsync(Permissions.LOCATION);
 
     if (status != 'granted') {
 		dispatch({
-			type: WATCH_LOCATION_FAIL,
+			type: ENABLE_BACKGROUND_LOCATION_FAIL,
 			payload: "Permission not granted"
 		});
 		return;
     }
 
 	try {
-        TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) => {
-            if (error) {
-              // check `error.message` for more details.
-              dispatch({
-                type: BACKGROUND_LOCATION_FAIL,
-                payload: error.message
-             })
-              return;
-            }
-            console.log('Received new locations', locations);
-          });
-		let location = await Location.startLocationUpdatesAsync({}, data => {
-            dispatch({
-                type: WATCH_LOCATION_SUCCESS,
-                payload: location
-            })
-        });
+		let isRegged = await TaskManager.isTaskRegisteredAsync("BACKGROUND_LOCATION");
+
+		if (!isRegged) {
+			dispatch({
+				type:ENABLE_BACKGROUND_LOCATION_FAIL,
+				payload: "Task manager not registered"
+			})
+		}
+
+		let hasStartedLocationUpdates = await Location.hasStartedLocationUpdatesAsync("BACKGROUND_LOCATION");
+
+		if (!Location.hasStartedLocationUpdates) {
+			await Location.startLocationUpdatesAsync("BACKGROUND_LOCATION", {
+				distanceInterval: 20,
+				pausesUpdatesAutomatically: true
+			});
+		}
 	} catch(err) {
 		dispatch({
 			type: WATCH_LOCATION_FAIL,
