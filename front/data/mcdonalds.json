@@ -1,0 +1,953 @@
+{
+    "html_attributions" : [],
+    "next_page_token" : "CrQCIgEAAN1ouyQz8WAs7Dw41Pdicqk-XeEUwqF3_T4TQ94x3045lfVhklayIzciP2jf_ChX7_NNmGHCvwjEHDe3ccGr5MMrZTvjM1Ot6dkEwHwDSK6LPSszN_I69uEQTo7EG71fq_LWMg7lyhhUzo3ZnkJl7XPvB72WxN1k-6X7SchmcOv3E67PN3D56Ia20WlcyS0RrGAnnXbiX5rV0tC6YhfVZEmGzSB2E6xB-pwrBvDU_ua3Gbr4GNeyA5AIpw-IXBiDixIbYPqm-Wxo5F499roOgNw3kjwLc5V-VwiSz5HgQOuSBwdyjhtebcZnLhFFYSAsU5UAb94KjXc80BOB7Wp5TaElHMHapobQlNVm87uqU01ZexfMtzSoowmrro4_J1_v_i9pwiPox23YgaW6yw86Ss0SECCoTsb4ivmJKetoP4DhQZcaFEPwIE21qySMS3DjlzviE2LlhQ3U",
+    "results" : [
+       {
+          "formatted_address" : "241 City Rd, Hoxton, London EC1V 1JQ, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5297955,
+                "lng" : -0.0947712
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.53109397989272,
+                   "lng" : -0.09347752010727778
+                },
+                "southwest" : {
+                   "lat" : 51.52839432010727,
+                   "lng" : -0.09617717989272222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "bc4415d8ecf2a8028efd882070f0ab8e6ba9bb80",
+          "name" : "McDonald's City Road",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 2160,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/109342161079987180396/photos\"\u003eK Lim\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAzEvEO8QXzpHwIz_ce_UcC-CysDR7u94x40YimfYWJE2oS9d76bXyF7wLSw1uPz2N_VoHhjWn9pyabxXQpEMj9AmjBPiH4culHuFH77gQu5mYziSWKhwDedteGak-GBpZEhAsfSZXt5J5Hh3vrk48wJxfGhTS8Sf95qYyHRd9yqmVkShqIsB8cw",
+                "width" : 3840
+             }
+          ],
+          "place_id" : "ChIJW221llgbdkgR3AuUZQzlnSU",
+          "plus_code" : {
+             "compound_code" : "GWH4+W3 London, United Kingdom",
+             "global_code" : "9C3XGWH4+W3"
+          },
+          "price_level" : 1,
+          "rating" : 3.4,
+          "reference" : "ChIJW221llgbdkgR3AuUZQzlnSU",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 1464
+       },
+       {
+          "formatted_address" : "Liverpool Street, London EC2M 7PY, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5176452,
+                "lng" : -0.0823585
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51904717989272,
+                   "lng" : -0.08098707010727778
+                },
+                "southwest" : {
+                   "lat" : 51.51634752010728,
+                   "lng" : -0.08368672989272222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "888468ce2723e75f2289edbdea307ffb915e3c9b",
+          "name" : "McDonald's Liverpool Street",
+          "opening_hours" : {},
+          "photos" : [
+             {
+                "height" : 2048,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/115424737083775068684/photos\"\u003eIngala lorenzo\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAA1D8Phe9atqY4prElRT7PXyREXbbKOcR7XQAw-wMIzGXQuy1AxkVhgdZX9DR8-p2guUJzB3pHtAhvNTqb-9m0g_HD39eHiV5a3cJ-joTuyj3L-OlgGeOu-Bi4k-la7hNWEhDnjuX-EzEHPXM5yP_z2SzqGhQn8l18kFKnT2wWf_Ewx9L0fT-bbQ",
+                "width" : 1536
+             }
+          ],
+          "place_id" : "ChIJGS7Sga0cdkgR46nd-S661TM",
+          "plus_code" : {
+             "compound_code" : "GW99+33 London, United Kingdom",
+             "global_code" : "9C3XGW99+33"
+          },
+          "price_level" : 1,
+          "rating" : 3.5,
+          "reference" : "ChIJGS7Sga0cdkgR46nd-S661TM",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 4087
+       },
+       {
+          "formatted_address" : "1A Ludgate Hill, London EC4M 7AA, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5136759,
+                "lng" : -0.1007168
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51507437989272,
+                   "lng" : -0.09935102010727775
+                },
+                "southwest" : {
+                   "lat" : 51.51237472010728,
+                   "lng" : -0.1020506798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "87f4cdae6f0acdc4edc3b1a8807f49ec6212ab1f",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 2268,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/110443601315615363827/photos\"\u003eRui Patricio\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAght9sD1vFBkBh2nct2ybw7lJIvbKH-gHMsRJOmAxdOEV9agTpYA8xSyhC3prawj_y33PSa6GU1kFEMYidYIZJOcwRWJHq-25Y9h8EDDqDVVw-48rs0x80P97xMfWsHAeEhADon191X99lUzVja6Kar8DGhTSQ-wk10BEuH-tpEkSoIjXbLyO_g",
+                "width" : 4032
+             }
+          ],
+          "place_id" : "ChIJedbqvawEdkgRteIsblwlQtQ",
+          "plus_code" : {
+             "compound_code" : "GV7X+FP City of London, London, United Kingdom",
+             "global_code" : "9C3XGV7X+FP"
+          },
+          "price_level" : 1,
+          "rating" : 4.1,
+          "reference" : "ChIJedbqvawEdkgRteIsblwlQtQ",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1091
+       },
+       {
+          "formatted_address" : "42 London Wall, London EC2M 5TB, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5171065,
+                "lng" : -0.08848549999999999
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51853417989272,
+                   "lng" : -0.08710387010727777
+                },
+                "southwest" : {
+                   "lat" : 51.51583452010728,
+                   "lng" : -0.08980352989272221
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "bf0dea8f2757f7025ddb107cb21ef137ae963897",
+          "name" : "McDonald's London Wall",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 350,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108397058523485260601/photos\"\u003eAdrian Visan\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAACXkCQdCErmdXwfCRpNDHI1j1M00NMKA73RRyALuI3Gm0kayeEx9ngboddXTpSK-MVBNvZe_WY6oPoUR0NENsoiQrkMd9p4MLbojvUdMDrsaZ12byZ2S6M18rgebzFj2cEhDyUhGvgACtTxJ9cNdxXrbjGhTBlsA0L0MsfI-fqncU29M-LwOLwQ",
+                "width" : 600
+             }
+          ],
+          "place_id" : "ChIJZd4Me6scdkgRIHgmADPc398",
+          "plus_code" : {
+             "compound_code" : "GW86+RJ London, United Kingdom",
+             "global_code" : "9C3XGW86+RJ"
+          },
+          "price_level" : 1,
+          "rating" : 3.3,
+          "reference" : "ChIJZd4Me6scdkgRIHgmADPc398",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 187
+       },
+       {
+          "formatted_address" : "152/153 Fleet St, London EC4A 2DQ, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5143403,
+                "lng" : -0.1077819
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51578367989272,
+                   "lng" : -0.1063794701072778
+                },
+                "southwest" : {
+                   "lat" : 51.51308402010728,
+                   "lng" : -0.1090791298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "e45440f89dcede7b7a375c06f995a90c17872b78",
+          "name" : "McDonald's Fleet Street",
+          "opening_hours" : {
+             "open_now" : false
+          },
+          "photos" : [
+             {
+                "height" : 2268,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/106891853262542656422/photos\"\u003eWilliam Rodriguez Piedrahita\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAA-Vlka5SKFZwPAtH0elHQYMEL6tCST-xixUwgsdSH6aaaKxNR_T_oPeUHPO9CS29XSFdPbW2YZ7VQNIwP45-p4D20-2KulIjfazhHxuDsOMz5o_kUN1BmEfiQKuXBlbANEhA8j4XY5FT7RKqqPbWQMqnhGhTimMk3RBOWVV0mVli3_952YX71ew",
+                "width" : 4032
+             }
+          ],
+          "place_id" : "ChIJNR30z7IEdkgRQ-WABXiOKV4",
+          "plus_code" : {
+             "compound_code" : "GV7R+PV City of London, London, United Kingdom",
+             "global_code" : "9C3XGV7R+PV"
+          },
+          "price_level" : 1,
+          "rating" : 3.5,
+          "reference" : "ChIJNR30z7IEdkgRQ-WABXiOKV4",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 931
+       },
+       {
+          "formatted_address" : "432-436 Bethnal Green Rd, London E2 0DJ, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.52687,
+                "lng" : -0.05941349999999999
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.52830937989273,
+                   "lng" : -0.05808817010727778
+                },
+                "southwest" : {
+                   "lat" : 51.52560972010728,
+                   "lng" : -0.06078782989272222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "0d95e3992695bc3fd82360b44a968bb1b518d83c",
+          "name" : "McDonald's Bethnal Green",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 4032,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108262224519634829687/photos\"\u003eMichael Lee\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAyPO7whxj2BRqapWM4dKWe0WKJKBs7LnBYqVCvY00QnqmE0POYtRS1h9ofY5WDYitHceMmoAguMcoHbyX8H4EbTB1OwN8ve7XreZXqayfiG5y7PYXLym6ZeCdNtEdAEgtEhDIOqcAuojyVEg5pPMfuZOjGhQjd66SjJ75CtPMw4xyab5Q7ooqZw",
+                "width" : 3024
+             }
+          ],
+          "place_id" : "ChIJL64MNcUcdkgRZX_-qlubsK4",
+          "plus_code" : {
+             "compound_code" : "GWGR+P6 London, United Kingdom",
+             "global_code" : "9C3XGWGR+P6"
+          },
+          "price_level" : 1,
+          "rating" : 3.5,
+          "reference" : "ChIJL64MNcUcdkgRZX_-qlubsK4",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 1061
+       },
+       {
+          "formatted_address" : "48 Leicester Square, London WC2H 7LU, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5101775,
+                "lng" : -0.1307003
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51142182989273,
+                   "lng" : -0.1292967701072778
+                },
+                "southwest" : {
+                   "lat" : 51.50872217010728,
+                   "lng" : -0.1319964298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "775c912be0b3ac24fd06fa8ea0950dfddff611aa",
+          "name" : "McDonald's Leicester Square",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 3984,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/117016577742677280589/photos\"\u003eKonrad Ch\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAANILlJ490cKigtKGjgB5H8iwQkhrPrdplE49VpJPxxfeKgP4PkSr7N6Zv41ntqaZQW8r4_QhbrQVE4JlDmYsQ8ByFgmyQyHOqRCOIXgl1jGjKVTr9v5p_Ghp1kqsmwPOGEhC4fLm4BvXFSEEKdR1YVZV_GhRD8JfhJAgusBU97h0JqkuWZZbNCw",
+                "width" : 5312
+             }
+          ],
+          "place_id" : "ChIJk7WRItIEdkgR5Z_D0y6Pcko",
+          "plus_code" : {
+             "compound_code" : "GV69+3P Charing Cross, London, United Kingdom",
+             "global_code" : "9C3XGV69+3P"
+          },
+          "price_level" : 1,
+          "rating" : 3.8,
+          "reference" : "ChIJk7WRItIEdkgR5Z_D0y6Pcko",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1906
+       },
+       {
+          "formatted_address" : "The Colonnade, 43 Waterloo Rd, Lambeth, London SE1 8SF, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5028218,
+                "lng" : -0.1113607
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.50451012989273,
+                   "lng" : -0.1103737201072778
+                },
+                "southwest" : {
+                   "lat" : 51.50181047010728,
+                   "lng" : -0.1130733798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "46bc77232c7482f43933f528c8a98c5bcdd9f40f",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 4032,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/100317833931102218342/photos\"\u003eDaivat Dholakia\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAwtBI9PJGyUPtl-CkpOC_I17DwLQrLYjzV3l_8ZuQIugsTblF-yEINZpXOtzYbMei_8NVdLnwlolUeB9Xe0Pzea2p1q1q9XVr1WV7X1Ziq8hlc6TAQ0VF0Bsx4NK7waGPEhDh2EPUvI24_9FNg0SzCh9UGhS5h4jtLFt-rNof0JLFGjuaWdlyQQ",
+                "width" : 3024
+             }
+          ],
+          "place_id" : "ChIJfyPxH7oEdkgR9os4LwBZhbM",
+          "plus_code" : {
+             "compound_code" : "GV3Q+4F Lambeth, London, United Kingdom",
+             "global_code" : "9C3XGV3Q+4F"
+          },
+          "price_level" : 1,
+          "rating" : 3.6,
+          "reference" : "ChIJfyPxH7oEdkgR9os4LwBZhbM",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1623
+       },
+       {
+          "formatted_address" : "112 High Holborn, Holborn, London WC1V 6JS, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.51784199999999,
+                "lng" : -0.1196837
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51911732989272,
+                   "lng" : -0.1183139701072778
+                },
+                "southwest" : {
+                   "lat" : 51.51641767010727,
+                   "lng" : -0.1210136298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "b1f35e38de40aefea4f67d56f65176102d043421",
+          "name" : "McDonald's Holborn",
+          "opening_hours" : {},
+          "photos" : [
+             {
+                "height" : 1836,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/110463032732127851535/photos\"\u003eEli Freiman\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAA6AR6NGX5L91_aShMIFrjnKrczq8qUjCo7bptdiNkr_MwL0tvwoklj1CF55hkHEoMNsuroksAgj-mCtOxEc-AEn-M5Ru_kX1csugJAkl0fEuGYjbpC8MmPS4PgY-RLZQnEhCL7tQ5Qw7uGAav_LWipbO7GhQ7dmGWynJWXnuhUlg9-DhchA28Ng",
+                "width" : 3264
+             }
+          ],
+          "place_id" : "ChIJ3yi6qDUbdkgRBBl7d0RCYrQ",
+          "plus_code" : {
+             "compound_code" : "GV9J+44 London, United Kingdom",
+             "global_code" : "9C3XGV9J+44"
+          },
+          "price_level" : 1,
+          "rating" : 3.7,
+          "reference" : "ChIJ3yi6qDUbdkgRBBl7d0RCYrQ",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 1762
+       },
+       {
+          "formatted_address" : "6-7 Holborn, London EC1N 2LL, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5179268,
+                "lng" : -0.1107555
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51933502989272,
+                   "lng" : -0.1093767701072778
+                },
+                "southwest" : {
+                   "lat" : 51.51663537010728,
+                   "lng" : -0.1120764298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "f885c782d7865f357bf7ad9a9058d50ae6660596",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1960,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/110123776592277387599/photos\"\u003eA Google User\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAO0UpMxqKMwPcErGUjnfA1Gxz7U7ny-VXRDPhSDmDdOG_500CWHjHABlylVD532ZYa68rgk5gawOSDAXu7fcqxyQ9yy_9UEutZupirJP7Ubqbzpmg_ELTPN-2O90C0NMzEhCGElSag1mfmUlgJ8bO6WFeGhSALTE1QXSzyddOUnWrepw_G6NDWQ",
+                "width" : 4032
+             }
+          ],
+          "place_id" : "ChIJn3YcYEwbdkgRjxdh9_uIomw",
+          "plus_code" : {
+             "compound_code" : "GV9Q+5M City of London, London, United Kingdom",
+             "global_code" : "9C3XGV9Q+5M"
+          },
+          "price_level" : 1,
+          "rating" : 3.7,
+          "reference" : "ChIJn3YcYEwbdkgRjxdh9_uIomw",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 609
+       },
+       {
+          "formatted_address" : "67 Chapel Market, The Angel, London N1 9ER, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5334099,
+                "lng" : -0.1084948
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.53482137989272,
+                   "lng" : -0.1075449201072778
+                },
+                "southwest" : {
+                   "lat" : 51.53212172010728,
+                   "lng" : -0.1102445798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "4934711aedb82d818a4f34eda30b18d4185af9c7",
+          "name" : "McDonald's Islington",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 4096,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108025572648960848570/photos\"\u003ePaul Stubbings\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAfyp1dU01fbykNF-qKMNPGUplqWPQzCo4dPM7PJvA5xgVmKO3E_TnWZSGLScp-7GFa0w0o6LRIQrxXyiKWWqs5YKJQZW8RmAtksu_BL9jJb58KlLkkBfZWie66SJ6A528EhAnIQFxGDGOpw0XBRPBp2U_GhSlfFsLaNo1qrzYGUCdZpPNzdAUQg",
+                "width" : 2304
+             }
+          ],
+          "place_id" : "ChIJBYxE_kIbdkgRmjPLkrw-kP8",
+          "plus_code" : {
+             "compound_code" : "GVMR+9J Islington, London, United Kingdom",
+             "global_code" : "9C3XGVMR+9J"
+          },
+          "price_level" : 1,
+          "rating" : 3.3,
+          "reference" : "ChIJBYxE_kIbdkgRmjPLkrw-kP8",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1058
+       },
+       {
+          "formatted_address" : "217 Commercial Rd, Whitechapel, London E1 2BT, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5149692,
+                "lng" : -0.0595797
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51618387989272,
+                   "lng" : -0.05836057010727779
+                },
+                "southwest" : {
+                   "lat" : 51.51348422010728,
+                   "lng" : -0.06106022989272223
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "4d6320f740d05a50a3bae628e10ee1c34c45230b",
+          "name" : "McDonald's Commercial Road",
+          "opening_hours" : {},
+          "photos" : [
+             {
+                "height" : 350,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108397058523485260601/photos\"\u003eAdrian Visan\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAHeAU5hCnHyNLjMnHjsUYrNjowe4UdnwzbgNvH4UYyWrBk_U8A_PQA3FEx8oT3Z7mDhJ3ngoY4v-1pKyWh4typ4zqFlv_4UkpKsNDaL_cTc7PQKdBo33rsBEVq4lsv1v3EhDxNdv1j4Z7mqC5IjLWvvixGhTpCaPryxv-AEUjstaPsGDL7IoN_w",
+                "width" : 600
+             }
+          ],
+          "place_id" : "ChIJW9EEszIDdkgRzOLHUICaUOU",
+          "plus_code" : {
+             "compound_code" : "GW7R+X5 London, United Kingdom",
+             "global_code" : "9C3XGW7R+X5"
+          },
+          "price_level" : 1,
+          "rating" : 3.3,
+          "reference" : "ChIJW9EEszIDdkgRzOLHUICaUOU",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 1903
+       },
+       {
+          "formatted_address" : "8-10 Oxford St, Fitzrovia, London W1D 1AW, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5165182,
+                "lng" : -0.1308243
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51781857989272,
+                   "lng" : -0.1294804201072778
+                },
+                "southwest" : {
+                   "lat" : 51.51511892010727,
+                   "lng" : -0.1321800798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "a963cbdd6f286cce069009915a8af5b4bd30b593",
+          "name" : "McDonald's Oxford Street",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 4656,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/114948526250842944493/photos\"\u003e강승현\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAFAYqLp60E1kVR7y8jnQKCyXlAbcVPcUNDRlON4RE9_FT7tg5Izay_LTH3uufUTdqNtoD5zEzQFnNZtw8ArxnQc7E3VYL9i0siFXF6nuuaLkSFTNdoy9_dPRh_3hCK2xSEhAqUD7XX88EdoNzWdDzw2PKGhRpEPumFm1kJRTcwQKC9tuDl-aHoA",
+                "width" : 2328
+             }
+          ],
+          "place_id" : "ChIJBd0NES0bdkgRcW--hZYnkP0",
+          "plus_code" : {
+             "compound_code" : "GV89+JM Fitzrovia, London, United Kingdom",
+             "global_code" : "9C3XGV89+JM"
+          },
+          "price_level" : 1,
+          "rating" : 3.7,
+          "reference" : "ChIJBd0NES0bdkgRcW--hZYnkP0",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1558
+       },
+       {
+          "formatted_address" : "25-27 Shaftesbury Ave, Soho, London W1D 7EQ, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.510991,
+                "lng" : -0.1339015
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51228202989272,
+                   "lng" : -0.1325673701072778
+                },
+                "southwest" : {
+                   "lat" : 51.50958237010727,
+                   "lng" : -0.1352670298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "a74f4eae7406e6f98186e45a1d6db6a5c929e2e0",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 2988,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/113982728238503071649/photos\"\u003eM Ali\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAbJE7FrPImpbZVybuv3pnrL_CW2tSDZ5mt3Ts8rD3eujSM5zCn8NO3HNo93Z-itUMt6rGsy797SrZyZW98z25Td7Z_X-BApPBrV845Z3P8hAZ2ojw1IhaiyEOJbq86iY5EhCr0zV4h37ESywkhrb0ZpJOGhQRLr0Bf6rzkAFviLikr0Q8DYC93g",
+                "width" : 5312
+             }
+          ],
+          "place_id" : "ChIJEYG9wZsHdkgR8m-KaZlRo-M",
+          "plus_code" : {
+             "compound_code" : "GV68+9C Soho, London, United Kingdom",
+             "global_code" : "9C3XGV68+9C"
+          },
+          "price_level" : 1,
+          "rating" : 3.6,
+          "reference" : "ChIJEYG9wZsHdkgR8m-KaZlRo-M",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 2227
+       },
+       {
+          "formatted_address" : "122 Baker St, Marylebone, London W1U 6BF, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5213863,
+                "lng" : -0.1569188
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.52269437989272,
+                   "lng" : -0.1556718701072778
+                },
+                "southwest" : {
+                   "lat" : 51.51999472010728,
+                   "lng" : -0.1583715298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "bad10dc53e8a43eae84bf1a5578898fe882dbd44",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 350,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108397058523485260601/photos\"\u003eAdrian Visan\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAA-J8Pe0noJS2azhFWXkC3YbhLI7SPHw-KLU42WVCpPw2hlqnAApspY6tKXJXuP40XyB4T4eVAl-XbwmLDeuJ_isyJu9wBnhx-y3aEgnYoZ-f3FEb6Vu0iN6yHWfQs4Zs3EhD_Y-ncZRzU5XEaNemVpclEGhRNWe8ujI-KgiGXOXBwc-GaUR_jNw",
+                "width" : 600
+             }
+          ],
+          "place_id" : "ChIJIzGhlM4adkgRDY22OARVE5s",
+          "plus_code" : {
+             "compound_code" : "GRCV+H6 Marylebone, London, United Kingdom",
+             "global_code" : "9C3XGRCV+H6"
+          },
+          "price_level" : 1,
+          "rating" : 3.8,
+          "reference" : "ChIJIzGhlM4adkgRDY22OARVE5s",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1671
+       },
+       {
+          "formatted_address" : "68-69 St Martin's Ln, Covent Garden, London WC2N 4JS, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.51152219999999,
+                "lng" : -0.1270386
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51288592989272,
+                   "lng" : -0.1257326201072778
+                },
+                "southwest" : {
+                   "lat" : 51.51018627010728,
+                   "lng" : -0.1284322798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "af172e4b6444c479cd2675ece9c3244a6306ee2f",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 3264,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/112600795123697406686/photos\"\u003eLinus Hull-Nilsson\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAA3fR60TBHBfG254GAMwwqPtpXjY68ietwUe8tFwAQzxrUc4hgF0AfB-d_cFqIPkHyQT4rSEkNsLFjQy3lnqMNmxTmx0qxgABq1yqLp2x2jjMXGWp1Qe2sGIqimrBCSvp8EhC6Mj7uEsdfirOo-uLOcpdiGhT4Y0HbrZj6DxGTQwOJI0miOrABIQ",
+                "width" : 2448
+             }
+          ],
+          "place_id" : "ChIJXcy4sM0EdkgRvEuuQyY4Yxk",
+          "plus_code" : {
+             "compound_code" : "GV6F+J5 Charing Cross, London, United Kingdom",
+             "global_code" : "9C3XGV6F+J5"
+          },
+          "price_level" : 1,
+          "rating" : 3.6,
+          "reference" : "ChIJXcy4sM0EdkgRvEuuQyY4Yxk",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 659
+       },
+       {
+          "formatted_address" : "134 Tottenham Court Rd, Bloomsbury, London W1T 5BA, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5243677,
+                "lng" : -0.1379994
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.52578397989272,
+                   "lng" : -0.1365237201072778
+                },
+                "southwest" : {
+                   "lat" : 51.52308432010727,
+                   "lng" : -0.1392233798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "91e51dab48ed9bbbb592a35de2892b1d1ae70ef8",
+          "name" : "McDonald's Warren Street",
+          "photos" : [
+             {
+                "height" : 3366,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/114944741775481209071/photos\"\u003e吳伯益\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAhkcrziApI7ilND8oY6CfYlp5C34iaWj6ptXkFdQuKq4q408y9eOsmJB-RD_Tv6p7spLovg-jxHWnDGYBMDhlxjnZnHHp_KoQS5f7O7NwZ8ULuMzrCo2k85TVq2maDjxbEhDnzVLyLr5e1rEzcEYRqqXmGhTONxRLYPXQOHOfw_W9NEs5cP9nLA",
+                "width" : 5984
+             }
+          ],
+          "place_id" : "ChIJ88nbYSgbdkgR969e7eVQgH0",
+          "plus_code" : {
+             "compound_code" : "GVF6+PR London, United Kingdom",
+             "global_code" : "9C3XGVF6+PR"
+          },
+          "price_level" : 1,
+          "rating" : 3.5,
+          "reference" : "ChIJ88nbYSgbdkgR969e7eVQgH0",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 1569
+       },
+       {
+          "formatted_address" : "34-35 Strand, Charing Cross, London WC2N 5HY, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.50888639999999,
+                "lng" : -0.1244975
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.51026722989271,
+                   "lng" : -0.1232441201072778
+                },
+                "southwest" : {
+                   "lat" : 51.50756757010727,
+                   "lng" : -0.1259437798927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "af3f25772988d73d8acdc9c0d7aa10ce892747b4",
+          "name" : "McDonald's Strand",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 3840,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108025572648960848570/photos\"\u003ePaul Stubbings\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAyz_YDzmVY35uGUkgTOKFsxZxTphGb65knCIiSJVoDZ7xv75p5FEh7pPleQeGec7OzacIPbx87k9iH9Tj7eYZmPWTu19nSYIaW__DnpDsR4aXODchiecC-59KP11fq-v_EhCAC3_jrWyKONfwlG0qb3XlGhROb64kpzOuN3EeCmVpUX13IxS40w",
+                "width" : 2160
+             }
+          ],
+          "place_id" : "ChIJjeMSvM4EdkgRfqyISHLyD4Y",
+          "plus_code" : {
+             "compound_code" : "GV5G+H6 London, United Kingdom",
+             "global_code" : "9C3XGV5G+H6"
+          },
+          "price_level" : 1,
+          "rating" : 3.7,
+          "reference" : "ChIJjeMSvM4EdkgRfqyISHLyD4Y",
+          "types" : [
+             "meal_takeaway",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "establishment"
+          ],
+          "user_ratings_total" : 3292
+       },
+       {
+          "formatted_address" : "Belgrove House, London NW1 2RY, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5301184,
+                "lng" : -0.1231786
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.53154642989273,
+                   "lng" : -0.1218413701072778
+                },
+                "southwest" : {
+                   "lat" : 51.52884677010729,
+                   "lng" : -0.1245410298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "f4ab9fd145126958659a9ee8c9388cb06f44f456",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 460,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/108397058523485260601/photos\"\u003eAdrian Visan\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAs7n8x7EVJ8C7MmaoynQ9F7xFFfNPh0bf5qETIs7rxky_gwE-CRN8K0bksT--Ydh3FuJD50GMrjVc_xifD03uT6r7COlkK9WNkEmBogZNyKVACYxhHrJqJrGzW2ElhFtKEhBEf4uJv4yJQJeDP2jgUhvOGhTb55Xp7RqNHfq7AnG69DoNcKxE4g",
+                "width" : 886
+             }
+          ],
+          "place_id" : "ChIJJyajsz4bdkgRZjJJgxp9GUU",
+          "plus_code" : {
+             "compound_code" : "GVJG+2P Kings Cross, London, United Kingdom",
+             "global_code" : "9C3XGVJG+2P"
+          },
+          "price_level" : 1,
+          "rating" : 3.7,
+          "reference" : "ChIJJyajsz4bdkgRZjJJgxp9GUU",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 2276
+       },
+       {
+          "formatted_address" : "302-304 Pentonville Rd, London N1 9XD, United Kingdom",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.5309123,
+                "lng" : -0.1222788
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.53225262989272,
+                   "lng" : -0.1210363701072778
+                },
+                "southwest" : {
+                   "lat" : 51.52955297010728,
+                   "lng" : -0.1237360298927222
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+          "id" : "58d2ac276e2454daea0155e3a0f5013215a67f4f",
+          "name" : "McDonald's",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1152,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/111916004115586371817/photos\"\u003eBenjamin AIMONE\u003c/a\u003e"
+                ],
+                "photo_reference" : "CmRaAAAAaoYzHUPDCXoZmb9RBKkQ0IMiqEbN2XRcZxP4iL0GyR6xekSWEytCjLbl91ucaRYrCHK9VubKkVeL9meN5-2Kk7iPt3t9d_3QTMGum4_do3Rwi6midrK9WqqdxcCKza-8EhAcv1yNj5QpQ9fxU0F2-2L4GhSnyJVUwa8EcYMWWAlDgTt5ndAxwQ",
+                "width" : 2048
+             }
+          ],
+          "place_id" : "ChIJ78B0zD4bdkgRluR43HwjNQ0",
+          "plus_code" : {
+             "compound_code" : "GVJH+93 Kings Cross, London, United Kingdom",
+             "global_code" : "9C3XGVJH+93"
+          },
+          "price_level" : 1,
+          "rating" : 3.5,
+          "reference" : "ChIJ78B0zD4bdkgRluR43HwjNQ0",
+          "types" : [ "restaurant", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1944
+       }
+    ],
+    "status" : "OK"
+ }
+ 

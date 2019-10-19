@@ -1,8 +1,20 @@
 import {
-    ADD_DATA_POINT
+    ADD_DATA_POINT, 
+
+    GET_LOCATION_START,
+    GET_LOCATION_FAIL,
+    GET_LOCATION_SUCCESS,
+
+    WATCH_LOCATION_START, 
+    WATCH_LOCATION_FAIL, 
+    WATCH_LOCATION_SUCCESS
 } from './actions';
 
 import { combineReducers } from 'redux';
+
+
+const merge = (prev, next) => Object.assign({}, prev, next);
+
 
 const DEFAULT_USER_DATA = {}
 
@@ -15,13 +27,38 @@ const userDataReducer = (state = DEFAULT_USER_DATA, action) => {
     }
 }
 
+const DEFAULT_LOCATION_STATE = {
+    coordinate: {},
+	isFetching: false,
+	didFail: false,
+	error: ''
+}
+
+const locationReducer = (state = DEFAULT_LOCATION_STATE, action) => {
+	switch(action.type) {
+		case GET_LOCATION_START:
+        case WATCH_LOCATION_START:
+			return merge(state, {isFetching: true, didFail: false, error: ''})
+		case GET_LOCATION_FAIL:
+        case WATCH_LOCATION_FAIL:
+			return merge(state, {isFetching: false, didFail: true, error: action.payload});
+		case GET_LOCATION_SUCCESS:
+        case WATCH_LOCATION_SUCCESS:
+			return merge(state, {isFetching: false, coordinate: {...action.payload.coords}});
+		default:
+			return state
+	}
+}
+
 const INITIAL_STATE = {
-    data: DEFAULT_USER_DATA
+    data: DEFAULT_USER_DATA,
+    location: DEFAULT_LOCATION_STATE
 }
 
 const reducer = combineReducers({
     INITIAL_STATE,
-    data: userDataReducer
+    data: userDataReducer,
+    location: locationReducer
 })
 
 export default reducer;

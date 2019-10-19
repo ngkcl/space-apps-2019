@@ -11,16 +11,41 @@ import MapView, {
 	PROVIDER_GOOGLE
 } from 'react-native-maps';
 
-
 import { connect } from 'react-redux';
 
+import Map from '../components/Map';
+
+import Qs from 'qs';
+
+import {
+    getLocationAsync,
+    watchLocationAsync
+} from '../redux/actions';
+
+const DEFAULT_REGION = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+}
+
 class HomeScreen extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
 
-        state = {
-
+        this.state = {
+            location: this.props.location || DEFAULT_REGION
         }
+    }
+
+    componentDidMount() {
+        this.props.watchLocationAsync();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            location: nextProps.location
+        });
     }
 
     render() {
@@ -32,16 +57,14 @@ class HomeScreen extends React.Component {
                 style={styles.map}
                 provider={PROVIDER_GOOGLE}
                 region={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                  }}
+                    ...this.state.location.coordinate,
+                    longitudeDelta: 0.001,
+                    latitudeDelta: 0.001
+                }}
             >
 
-
             </MapView>
-        </View>
+        </View> 
         );
     }
 }
@@ -60,12 +83,16 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = state => ({
-	data: state.data
+    data: state.data,
+    location: state.location
 });
 
 const mapDispatchToProps = dispatch => ({
-	getLocationAsync: () => {
-		dispatch(getLocationAsync())
+    getLocationAsync: () => {
+        dispatch(getLocationAsync())
+    },
+	watchLocationAsync: () => {
+		dispatch(watchLocationAsync())
 	}
 })
 
