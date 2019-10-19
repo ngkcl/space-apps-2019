@@ -1,5 +1,6 @@
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
+import * as TaskManager from 'expo-task-manager';
 
 export const ADD_DATA_POINT = 'ADD_DATA_POINT';
 
@@ -18,7 +19,8 @@ export const addDataPoint = data => ({
 })
 
 export const getLocationAsync = () => async dispatch => {
-	dispatch({ type: GET_LOCATION_START });
+    dispatch({ type: GET_LOCATION_START });
+    
 	let { status } = await Permissions.askAsync(Permissions.LOCATION);
 
     if (status != 'granted') {
@@ -34,7 +36,8 @@ export const getLocationAsync = () => async dispatch => {
 		dispatch({
 			type: GET_LOCATION_SUCCESS,
 			payload: location
-		})
+        })
+        alert("get location: " + JSON.stringify(location))
 	} catch(err) {
 		dispatch({
 			type: GET_LOCATION_FAIL,
@@ -46,7 +49,8 @@ export const getLocationAsync = () => async dispatch => {
 
 export const watchLocationAsync = () => async dispatch => {
     dispatch({ type: WATCH_LOCATION_START });
-	let { status } = await Permissions.askAsync(Permissions.LOCATION);
+
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
 
     if (status != 'granted') {
 		dispatch({
@@ -55,22 +59,25 @@ export const watchLocationAsync = () => async dispatch => {
 		});
 		return;
     }
-
 	try {
-		let location = await Location.watchPositionAsync({}, data => {
+		let location = await Location.watchPositionAsync({
+            distanceInterval: 20,
+        }, location => {
             dispatch({
                 type: WATCH_LOCATION_SUCCESS,
                 payload: location
-            })
+            });
         });
 	} catch(err) {
 		dispatch({
 			type: WATCH_LOCATION_FAIL,
 			payload: err
-		})
+		});
 	}
 }
 
+
+// TODO: Finish after watch location
 export const backgroundLocationAsync = () => async dispatch => {
     dispatch({ type: BACKGROUND_LOCATION_START });
 	let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -84,6 +91,17 @@ export const backgroundLocationAsync = () => async dispatch => {
     }
 
 	try {
+        TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) => {
+            if (error) {
+              // check `error.message` for more details.
+              dispatch({
+                type: BACKGROUND_LOCATION_FAIL,
+                payload: error.message
+             })
+              return;
+            }
+            console.log('Received new locations', locations);
+          });
 		let location = await Location.startLocationUpdatesAsync({}, data => {
             dispatch({
                 type: WATCH_LOCATION_SUCCESS,
