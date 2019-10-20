@@ -99,7 +99,7 @@ TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) =
         return;
     }
     for (i in locations) {
-        alert(i);
+        // alert(i);
     }
     for (loc in locations) {
 		updateBackgroundLocation(loc);
