@@ -4,7 +4,8 @@ import React from 'react';
 import {
     StyleSheet,
     TouchableOpacity,
-    Image
+    Image,
+    ActivityIndicator,
 } from 'react-native';
 
 import { Input, Block, Text } from 'galio-framework';
@@ -169,6 +170,10 @@ class AddScreen extends React.Component {
                 )}>
                     <Text h3 bold>{this.state.dataType || "Anything"}</Text>
                 </TouchableOpacity>
+                {/* <ActivityIndicator style={{
+                    position: 'absolute',
+                }}
+                size="large" color="#0000FF"/> */}
                 {
                     Object.keys(dataForType).map((k, i) => {
                         let data = dataForType[k];
