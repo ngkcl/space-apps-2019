@@ -19,11 +19,17 @@ export const ENABLE_BACKGROUND_LOCATION_SUCCESS = 'ENABLE_BACKGROUND_LOCATION_SU
 
 export const BACKGROUND_LOCATION_UPDATE = "BACKGROUND_LOCATION_UPDATE";
 
+export const ADD_DATA_SELECTION = "ADD_DATA_SELECTION";
 
 
 export const addDataPoint = data => ({
     type: ADD_DATA_POINT,
     payload: data
+});
+
+export const addDataSelection = data => ({
+	type: ADD_DATA_SELECTION,
+	payload: data
 })
 
 export const getLocationAsync = () => async dispatch => {
@@ -99,7 +105,7 @@ TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) =
         return;
     }
     for (i in locations) {
-        alert(i);
+        // alert(i);
     }
     for (loc in locations) {
 		updateBackgroundLocation(loc);

@@ -1,12 +1,10 @@
 import numpy as np
-import getData from product
+from product import getData
 import sys
 
 sys.path.append('../')
 
-from user import avgQuery
-
-
+from users.user import avgQuery
 
 class FoodEmission():
     '''
@@ -20,23 +18,27 @@ class FoodEmission():
 
 
 
-    def burger():
+    def burger(self):
         return getData('beef')[0][1] * 0.2 + getData('bread')[0][1] * 0.1\
          + getData('lettuce')[0][1] * 0.1 + getData('tomato*loose')[0][1] * 0.1
 
-    def chicken():
+    def chicken(self):
         return getData('chicken')[0][1] * 0.3 + getData('bread')[0][1] * 0.05 + getData('egg')[0][1] * 0.05
 
-    def tescoMealDeal():
+    def tescoMealDeal(self):
         return getData('bread')[0][1] * 0.1 + getData('chicken')[0][1] * 0.1 + getData('tomato*l')[0][1] * 0.1
 
 
-    def calculateSingleEmission(foodItem):
-        return this[foodItem]()
+    def calculateSingleEmission(self, foodItem):
+        return eval('self.'+foodItem+'()')
 
 
-    def foodAverage():
-        meanEmission = foodPercent * UK_avg
-        yourMean = avgQuery()
+    def foodAverage(self, user_id):
+        meanEmission = self.foodPercent * self.UK_avg
+        yourMean = avgQuery(user_id, 'food')
 
         return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score
+
+if __name__ == "__main__":
+    fm = FoodEmission()
+    print(fm.foodAverage(0))

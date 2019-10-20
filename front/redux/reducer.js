@@ -8,7 +8,8 @@ import {
     WATCH_LOCATION_START, 
     WATCH_LOCATION_FAIL, 
     WATCH_LOCATION_SUCCESS,
-    BACKGROUND_LOCATION_UPDATE
+    BACKGROUND_LOCATION_UPDATE,
+    ADD_DATA_SELECTION
 } from './actions';
 
 import { combineReducers } from 'redux';
@@ -52,14 +53,33 @@ const locationReducer = (state = DEFAULT_LOCATION_STATE, action) => {
 	}
 }
 
+const DEFAULT_SELECTION_STATE = {
+    dataType: null,
+    selection: null,
+    quantity: null,
+    date: null
+}
+
+const selectionReducer = (state = DEFAULT_SELECTION_STATE, action) => {
+    switch(action.type) {
+        case ADD_DATA_SELECTION:
+            return merge(state, {...action.payload})
+        default:
+            return state;
+    }
+}
+
+
 const INITIAL_STATE = {
     data: DEFAULT_USER_DATA,
+    selection: DEFAULT_SELECTION_STATE,
     location: DEFAULT_LOCATION_STATE
 }
 
 const reducer = combineReducers({
     INITIAL_STATE,
     data: userDataReducer,
+    selection: selectionReducer,
     location: locationReducer
 })
 
