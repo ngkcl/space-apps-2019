@@ -15,6 +15,7 @@ class User(Model):
 
 class DataPoint(Model):
     gag = DoubleField()
+    category = TextField()
     time = DateField()
     user = ForeignKeyField(User, backref='datapoints', lazy_load=False)
 
@@ -23,13 +24,14 @@ class DataPoint(Model):
 
 
 
+
 if __name__ == "__main__":
     User.create_table()
     DataPoint.create_table()
 
 
-def avgQuery(user_id):
+def avgQuery(user_id, type):
     return (DataPoint
         .select(fn.avg(DataPoint.gag).alias('emission_avg'))
-        .where(DataPoint.time.between("7daysago", "now") and DataPoint.user == user_id)
+        .where(DataPoint.time.between("7daysago", "now") and DataPoint.user == user_id and DataPoint.category == type)
         .dicts()['emission_avg'])

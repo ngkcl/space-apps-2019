@@ -1,5 +1,5 @@
 import numpy as np
-import getData from product
+from product import getData
 import sys
 
 sys.path.append('../')
@@ -35,8 +35,8 @@ class FoodEmission():
         return this[foodItem]()
 
 
-    def foodAverage():
+    def foodAverage(user_id):
         meanEmission = foodPercent * UK_avg
-        yourMean = avgQuery()
+        yourMean = avgQuery(user_id, 'food')
 
         return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score
