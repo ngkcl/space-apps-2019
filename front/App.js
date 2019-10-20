@@ -31,6 +31,7 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import UserScreen from './screens/UserScreen';
 import AddScreen from './screens/AddScreen';
+import AddDataSelectionScreen from './screens/AddDataSelectionScreen';
 
 import AddButton from './components/AddButton';
 
@@ -41,8 +42,7 @@ const TabNavigator = createBottomTabNavigator({
   Add: {
     screen: AddScreen,
     navigationOptions: ({ navigation }) => ({
-      tabBarIcon: (<AddButton navigation={navigation} />),
-      tabBarLabel: ""
+      tabBarIcon: (<AddButton />)
     })
   },
   User: {
@@ -63,12 +63,31 @@ const TabNavigator = createBottomTabNavigator({
       }
 
       return <IconComponent name={iconName} size={25} color={tintColor} />;
+    },
+    tabBarLabel: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+      if (routeName === "Add") return <Text />;
+      else
+        return (
+          <Text
+            style={{
+              // fontFamily: Globals.font_primary,
+              fontSize: 12,
+              alignSelf: "center",
+              color: tintColor,
+              marginBottom: 2
+            }}
+          >
+            {routeName}
+          </Text>
+        );
     }
   }),
-  tabBarOptions: ({ navigation }) => ({
+  tabBarOptions: {
     activeTintColor: 'tomato',
     inactiveTintColor: 'gray',
-  }),
+    showLabel: true
+  },
   initialRouteName: 'Map'
 });
 
@@ -79,9 +98,12 @@ const HomeStack = createStackNavigator({
       header: null
     }
   },
-  // Add: {
-  //   screen: AddScreen
-  // }
+  AddData: {
+    screen: AddDataSelectionScreen,
+    navigationOptions: {
+      header: null
+    }
+  }
 })
 
 const AppContainer = createAppContainer(HomeStack);

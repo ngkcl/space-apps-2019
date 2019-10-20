@@ -9,12 +9,16 @@ import * as Animatable from 'react-native-animatable';
 
 import Icon from '@expo/vector-icons/FontAwesome';
 
+import { withNavigation } from 'react-navigation';
+
 const SIZE = 80;
 
 class AddButton extends React.Component {
     mode = new Animated.Value(0);   
     
-    render() {     
+    render() {
+        let curr = this.props.navigation.state.routes[this.props.navigation.state.index];
+
         return (
             <Animatable.View style={{
                 position: 'absolute',
@@ -22,7 +26,11 @@ class AddButton extends React.Component {
             }}>  
                 <TouchableHighlight
                     onPress={() => {
-                        this.props.navigation.navigate("Add");
+                        if (curr.key != 'Add') {
+                            this.props.navigation.navigate("Add");
+                        } else {
+
+                        }
                     }}
                     underlayColor="#3498db"
                     style={{
@@ -43,4 +51,4 @@ class AddButton extends React.Component {
     }
 }
 
-export default AddButton;
+export default withNavigation(AddButton);
