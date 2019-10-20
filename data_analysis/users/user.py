@@ -6,7 +6,7 @@ from os.path import dirname, abspath
 db = SqliteDatabase(dirname(abspath(__file__)) + '/user.db')
 
 class User(Model):
-    username = TextField()
+    username = TextField(index=True, unique=True)
     password = TextField()
 
     class Meta:
