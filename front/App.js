@@ -31,6 +31,7 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import UserScreen from './screens/UserScreen';
 import AddScreen from './screens/AddScreen';
+import AddDataSelectionScreen from './screens/AddDataSelectionScreen';
 
 import AddButton from './components/AddButton';
 
@@ -79,9 +80,12 @@ const HomeStack = createStackNavigator({
       header: null
     }
   },
-  // Add: {
-  //   screen: AddScreen
-  // }
+  AddData: {
+    screen: AddDataSelectionScreen,
+    navigationOptions: {
+      header: null
+    }
+  }
 })
 
 const AppContainer = createAppContainer(HomeStack);
