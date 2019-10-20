@@ -36,6 +36,9 @@ export default class LoginScreen extends React.Component {
 		  data: formData
 		});
 
+		let token = response.headers["jwt-token"]
+		axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
+		
 		this.props.navigation.navigate('App');
 	}
 

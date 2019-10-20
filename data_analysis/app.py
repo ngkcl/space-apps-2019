@@ -53,6 +53,7 @@ def time(temperature):
 
 @app.route('/data/temperature/<emission>/')
 @app.route('/data/temperature/<emission>/<int:year>')
+@jwt_required()
 def emission(emission, year=2200):
 	"""
 	emissions with year
@@ -79,11 +80,12 @@ def emission(emission, year=2200):
 					type: string
 	"""
 	step = 25
+	user_id = current_identity.id
 	return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [
 		{'color': 'red', 'data': cmip5.worstCase(year, step=step)[1]},
 		{'color': 'green', 'data': cmip5.bestCase(year, step=step)[1]},
 		{'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(
-		    current_identity.id)) + float(FoodEmission.foodAverage(current_identity.id)), year, step=step)[1]}
+		    user_id)) + float(FoodEmission.foodAverage(user_id)), year, step=step)[1]}
 	]})
 
 
