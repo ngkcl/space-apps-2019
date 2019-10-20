@@ -154,7 +154,7 @@ class UserScreen extends React.Component {
                         <Block style={styles.textBlock1}>
                             <Text h4 bold style={styles.dataHeading}>Here's some cool data on your eco impact</Text>
 
-                            <Text p style={{marginBottom: 10}}>Based on your living habits, for the past two weeks you have an average emission (in metric tons per year) is </Text>
+                            <Text p style={{marginBottom: 10}}>Based on your living habits, for the past two weeks your personal average emission of CO2 (in metric tons per year) is</Text>
                             
                             <Text h3 bold>{this.state.avg_emissions.toFixed(1)}</Text>
                             <Text p style={{marginTop: 10}}>That's not too bad! Last month the same metric was at <Text bold>{Math.round(this.state.avg_emissions + 3)}</Text>. That's an improvement of <Text bold>{(100 - ((this.state.avg_emissions/(this.state.avg_emissions+3))*100)).toFixed(2)}%</Text> !</Text>
