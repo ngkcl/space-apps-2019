@@ -42,8 +42,7 @@ const TabNavigator = createBottomTabNavigator({
   Add: {
     screen: AddScreen,
     navigationOptions: ({ navigation }) => ({
-      tabBarIcon: (<AddButton navigation={navigation} />),
-      tabBarLabel: ""
+      tabBarIcon: (<AddButton />)
     })
   },
   User: {

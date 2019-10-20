@@ -47,7 +47,7 @@ const DATA_REPRESENTATION = {
         },
         'Eat': {
             1: {
-                'headline': 'and I ate',
+                'headline': 'and I had',
                 'options': [
                     {
                         id: uuidv4(),
