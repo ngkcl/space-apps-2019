@@ -29,6 +29,7 @@ class UserScreen extends React.Component {
     constructor(props) {
         super(props);
 
+        this.subscription = null
         this.state = {
             screenWidth: Dimensions.get("window").width,
             labels: [0],
@@ -37,8 +38,19 @@ class UserScreen extends React.Component {
         }
     }
 
-    async componentDidMount() {
+    componentWillUnmount() {
+        this.subscription.remove()
+    }
 
+    async componentDidMount() {
+        this.subscription = this.props.navigation.addListener(
+            'didFocus',
+            payload => {
+                this.animation.play();
+            }
+          );
+
+          
         this.animation.play();
 
         let data = await fetch("http://10.70.43.220:5000/data/temperature/5/2200")

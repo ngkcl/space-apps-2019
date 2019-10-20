@@ -50,7 +50,7 @@ export const uploadDataPointAsync = () => async dispatch => {
 
 	try {
 		let selection = store.getState().selection;
-		let res = await axios.post(API_URL, selection);
+		let res = await axios.post(API_URL + '/user/dataPoint', selection);
 	} catch (err) {
 		dispatch({
 			type: UPLOAD_DATA_POINT_FAIL,

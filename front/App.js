@@ -31,6 +31,8 @@ import {
 import HomeScreen from './screens/HomeScreen';
 import UserScreen from './screens/UserScreen';
 import AddScreen from './screens/AddScreen';
+import LoginScreen from './screens/LoginScreen';
+
 import AddDataSelectionScreen from './screens/AddDataSelectionScreen';
 
 import AddButton from './components/AddButton';
@@ -89,7 +91,7 @@ const TabNavigator = createBottomTabNavigator({
     }
   }),
   tabBarOptions: {
-    activeTintColor: 'tomato',
+    activeTintColor: '#ff147c',
     inactiveTintColor: 'gray',
     showLabel: true
   },
