@@ -1,12 +1,14 @@
 import numpy as np
+<<<<<<< HEAD
 from product import getData
+=======
+from co2.product import getData
+>>>>>>> refs/remotes/origin/master
 import sys
 
 sys.path.append('../')
 
-from user import avgQuery
-
-
+from users.user import avgQuery
 
 class FoodEmission():
     '''
@@ -37,6 +39,10 @@ class FoodEmission():
 
     def foodAverage(user_id):
         meanEmission = foodPercent * UK_avg
+<<<<<<< HEAD
         yourMean = avgQuery(user_id, 'food')
+=======
+        yourMean = avgQuery(user_id)
+>>>>>>> refs/remotes/origin/master
 
         return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score
