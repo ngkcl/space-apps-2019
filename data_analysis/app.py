@@ -38,12 +38,12 @@ def index():
 @jwt_required()
 def time(temperature):
 	"""
-	
+
 	"""
 	temperature = float(temperature)
-	emissions = FoodEmission.foodAverage(current_identity.id)
+	emissions = FoodEmission.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
 	return cmip5.invTrace(emissions, temperature)
-  
+
 
 @app.route('/data/temperature/<emission>/')
 @app.route('/data/temperature/<emission>/<int:year>')
@@ -73,10 +73,10 @@ def emission(emission, year = 2200):
 					type: string
 	"""
 	step = 25
-	return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [ 
-		{ 'color': 'red', 'data': cmip5.worstCase(year, step=step)[1] }, 
+	return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [
+		{ 'color': 'red', 'data': cmip5.worstCase(year, step=step)[1] },
 		{ 'color': 'green', 'data': cmip5.bestCase(year, step=step)[1] },
-		{ 'color': '#AAA', 'data': cmip5.extrapolateDeltaT(float(emission), year, step=step)[1] }
+		{ 'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(current_identity.id)) + float(FoodEmission.foodAverage(current_identity.id)), year, step=step)[1] }
 	]})
 
 @app.route('/data/vehicle/<distance>/<time>')
@@ -126,7 +126,7 @@ def polutionOut(vehicle, distance):
 		required: true
 		schema:
 			type: numbers
-		description: Take distance in km 
+		description: Take distance in km
 	responses:
 		200:
 			content:
