@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-    LineChart
+    LineChart,
+    ContributionGraph
 } from "react-native-chart-kit";
 
 import { StyleSheet, View, Animated, ScrollView } from 'react-native';
@@ -14,9 +15,7 @@ import LottieView from "lottie-react-native";
 import { Card, Block, Text } from 'galio-framework';
 import { theme, withGalio, GalioProvider } from 'galio-framework'
 
-
 import axios from "axios"
-
 
 const chartConfig = {
     backgroundGradientFrom: '#022173',
@@ -39,7 +38,8 @@ class UserScreen extends React.Component {
             datasets: [{ data: [0] }],
             scrollY: new Animated.Value(0),
             time: 0,
-            avg_emissions: 0
+            avg_emissions: 0,
+            calendar: []
         }
     }
 
@@ -72,6 +72,19 @@ class UserScreen extends React.Component {
         })
     }
 
+    async calendar() {
+        let { data } = await axios.get("http://10.70.43.220:5000/user/cal/11")
+        this.setState({
+            calendar: data.map(el => {
+                let d = new Date(el.time);
+                let ds = "" + d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate()
+                return { date: ds, count: parseFloat(el.avg) }
+            })
+        })
+        alert(JSON.stringify(this.state.calendar))
+
+    }
+
     async componentDidMount() {
         this.subscription = this.props.navigation.addListener(
             'didFocus',
@@ -83,7 +96,8 @@ class UserScreen extends React.Component {
         await this.temperatre()
         await this.time()
         await this.avg_emissions()
-          
+        await this.calendar()
+
         this.animation.play();
 
     }
@@ -139,6 +153,8 @@ class UserScreen extends React.Component {
                         zIndex: 10
                     }}
                 >
+                   
+
                     <Block 
                         width={this.state.screenWidth - 20} 
                         backgroundColor="#FFF" 
@@ -151,6 +167,7 @@ class UserScreen extends React.Component {
                             borderColor: "rgba(0,0,0,0)" 
                         }}
                     >
+                        
                         <Block style={styles.textBlock1}>
                             <Text h4 bold style={styles.dataHeading}>Here's some cool data on your eco impact</Text>
 
@@ -184,6 +201,8 @@ class UserScreen extends React.Component {
                             <Text h3 bold>{ this.state.time }</Text>
                             <Text p style={{marginTop: 20}}>That's all from me today! Was that positive? negative? I can't decide, I'm just some complicated if-statements in a machine! What I am here for is to give you a realistic view on your impact on the environment and help you out with some tips! <Text italic>See you tomorrow for your next report!</Text></Text>
                         </Block>
+                        <ContributionGraph values={this.state.calendar} endDate={new Date('2019-10-20')}
+numDays={32} width={this.state.screenWidth} height={440} chartConfig={chartConfig} ></ContributionGraph>
                         {/* <Text>Out average emission for the past week in metric to per year { this.state.avg_emissions }  </Text> */}
                     </Block>
                 </Animated.ScrollView>
