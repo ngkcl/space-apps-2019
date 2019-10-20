@@ -1,5 +1,5 @@
 import numpy as np
-from product import getData
+from co2.product import getData
 import sys
 
 sys.path.append('../')

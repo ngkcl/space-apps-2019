@@ -1,9 +1,8 @@
-from user import avgQuery
+from users.user import avgQuery
 
 
 class VehicleCalculator():
-
-	#note, this is g/km
+	"""note, this is g/km"""
 	flight = 254
 	car = 171
 	bus = 104
@@ -12,9 +11,8 @@ class VehicleCalculator():
 	walking = 0
 	maxWalkSpeed = 9.65606
 	maxTrainSpeed = 300
-
 	transportPercent = 0.27
-    UK_avg = 8.46 / 365
+	UK_avg = 8.46 / 365
 
 	@staticmethod
 	def vehicleCalc(distance, time):

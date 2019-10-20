@@ -13,14 +13,17 @@ from VehicleCalculator import VehicleCalculator
 
 cmip5 = CMIP5()
 
+
 def authenticate(username, password):
 	user = User.get(User.username == username)
 	if user and user.password.encode('utf-8') == password.encode('utf-8'):
 		return user
 
+
 def identity(payload):
 	user_id = payload['identity']
 	return User.get_by_id(user_id)
+
 
 app = Flask(__name__)
 swagger = Swagger(app)
@@ -30,9 +33,11 @@ app.config['JWT_AUTH_HEADER_PREFIX'] = "Bearer"
 
 jwt = JWT(app, authenticate, identity)
 
+
 @app.route('/')
 def index():
 	return ""
+
 
 @app.route('/data/time/<temperature>')
 @jwt_required()
@@ -41,13 +46,14 @@ def time(temperature):
 
 	"""
 	temperature = float(temperature)
-	emissions = FoodEmission.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
+	emissions = FoodEmission.foodAverage(
+	    current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
 	return cmip5.invTrace(emissions, temperature)
 
 
 @app.route('/data/temperature/<emission>/')
 @app.route('/data/temperature/<emission>/<int:year>')
-def emission(emission, year = 2200):
+def emission(emission, year=2200):
 	"""
 	emissions with year
 	---
@@ -74,10 +80,12 @@ def emission(emission, year = 2200):
 	"""
 	step = 25
 	return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [
-		{ 'color': 'red', 'data': cmip5.worstCase(year, step=step)[1] },
-		{ 'color': 'green', 'data': cmip5.bestCase(year, step=step)[1] },
-		{ 'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(current_identity.id)) + float(FoodEmission.foodAverage(current_identity.id)), year, step=step)[1] }
+		{'color': 'red', 'data': cmip5.worstCase(year, step=step)[1]},
+		{'color': 'green', 'data': cmip5.bestCase(year, step=step)[1]},
+		{'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(
+		    current_identity.id)) + float(FoodEmission.foodAverage(current_identity.id)), year, step=step)[1]}
 	]})
+
 
 @app.route('/data/vehicle/<distance>/<time>')
 def vehicleArray(distance, time):
@@ -107,6 +115,7 @@ def vehicleArray(distance, time):
 	"""
 	return jsonify({'vehicleArray': VehicleCalculator.vehicleCalc(float(distance), float(time))})
 
+
 @app.route('/data/polution/<vehicle>/<distance>')
 def polutionOut(vehicle, distance):
 	"""
@@ -134,7 +143,6 @@ def polutionOut(vehicle, distance):
 					type: string
 	"""
 	return jsonify({'carbonDioxideGrams': VehicleCalculator.polutionCalc(vehicle, float(distance))})
-
 
 
 @app.route('/user/register', methods=['POST'])
@@ -168,6 +176,7 @@ def register():
 		User.create(username=user['username'], password=user['password']).id
 	)
 
+
 @app.route("/user/datapoint", methods=["POST"])
 def add_datapoint():
 	"""
@@ -197,8 +206,8 @@ def add_datapoint():
 					type: string
 	"""
 	dataPoint = request.json
-	DataPoint.create(user=current_identity, gag=dataPoint.gag, time=datetime.fromtimestamp(dataPoint.time, category=category)
-	return str(DataPoint.id)
+	res = DataPoint.create(user=current_identity, gag=dataPoint.gag, time=datetime.fromtimestamp(dataPoint.time, category=category))
+	return str(res.id)
 
 @jwt_required()
 @app.route("/login", methods=["POST"])
@@ -223,17 +232,17 @@ def login():
 		description: User login failed.
 	"""
 	# try:
-	username = request.form.get("username")
-	password = request.form.get("password")
+	username=request.form.get("username")
+	password=request.form.get("password")
 
-	user = authenticate(username, password)
+	user=authenticate(username, password)
 	if not user:
 		raise Exception("User not found!")
 
-	resp = jsonify({"message": "User authenticated"})
-	resp.status_code = 200
+	resp=jsonify({"message": "User authenticated"})
+	resp.status_code=200
 
-	access_token = jwt.jwt_encode_callback(user)
+	access_token=jwt.jwt_encode_callback(user)
 
 	# add token to response headers - so SwaggerUI can use it
 	resp.headers.extend({'jwt-token': access_token})
