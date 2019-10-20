@@ -3,7 +3,7 @@ from users.user import avgQuery
 
 class VehicleCalculator():
 	"""note, this is g/km"""
-	flight = 254
+	plane = 254
 	car = 171
 	bus = 104
 	train = 41
@@ -38,6 +38,6 @@ class VehicleCalculator():
 	@staticmethod
 	def vehicleAvg(user_id):
 		# transport accounts for 27% of per person emissions
-		meanEmission = transportPercent * UK_avg
-		yourMean = avgQuery(user_id, 'transport')
+		meanEmission = VehicleCalculator.transportPercent * VehicleCalculator.UK_avg
+		yourMean = avgQuery(user_id, 'commute')
 		return yourMean / 1e6 - meanEmission

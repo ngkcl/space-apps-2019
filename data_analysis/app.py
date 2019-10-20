@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request
 from flask_jwt import JWT, jwt_required, current_identity
 from flasgger import Swagger
 
+from collections import namedtuple
+
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from datetime import datetime
 
@@ -12,6 +14,7 @@ from VehicleCalculator import VehicleCalculator
 
 
 cmip5 = CMIP5()
+fem = FoodEmission()
 
 
 def authenticate(username, password):
@@ -81,11 +84,12 @@ def emission(emission, year=2200):
 	"""
 	step = 25
 	user_id = current_identity.id
+	
 	return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [
 		{'color': 'red', 'data': cmip5.worstCase(year, step=step)[1]},
 		{'color': 'green', 'data': cmip5.bestCase(year, step=step)[1]},
 		{'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(
-		    user_id)) + float(FoodEmission.foodAverage(user_id)), year, step=step)[1]}
+		    user_id)) + float(fem.foodAverage(user_id)), year, step=step)[1]}
 	]})
 
 
@@ -207,8 +211,20 @@ def add_datapoint():
 				schema:
 					type: string
 	"""
-	dataPoint = request.json
-	res = DataPoint.create(user=current_identity, gag=dataPoint.gag, time=datetime.fromtimestamp(dataPoint.time, category=category))
+	
+
+	dataPoint = namedtuple('Struct', request.json.keys())(*request.json.values())
+	
+	print(dataPoint)
+	category = dataPoint.dataType.lower()
+	gag = 0
+	if(category == "eat"):
+		gag = fem.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0])/1000)
+	elif(category == "commute"):
+		gag = VehicleCalculator.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0]))
+
+
+	res = DataPoint.create(user=current_identity, gag=gag, time=datetime.fromtimestamp(dataPoint.date), category=dataPoint.dataType)
 	return str(res.id)
 
 @jwt_required()

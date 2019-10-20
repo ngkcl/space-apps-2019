@@ -11,6 +11,9 @@ import * as Animatable from 'react-native-animatable';
 import Icon from '@expo/vector-icons/FontAwesome';
 
 import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
+
+import { addDataSelection, uploadDataPointAsync } from '../redux/actions';
 
 const SIZE = 80;
 
@@ -65,7 +68,7 @@ const AddButton = (props) => {
                     if (curr.key != 'Add') {
                         props.navigation.navigate("Add");
                     } else {
-
+                        props.uploadDataPointAsync()
                     }
                 }}
                 underlayColor="#3498db"
@@ -87,4 +90,14 @@ const AddButton = (props) => {
 }
 
 
-export default withNavigation(AddButton);
+const mapDispatchToProps = dispatch => ({
+    addDataSelection: data => {
+        dispatch(addDataSelection(data))
+    },
+    uploadDataPointAsync: () => {
+        dispatch(uploadDataPointAsync())
+    }
+})
+
+
+export default connect(() => ({}), mapDispatchToProps)(withNavigation(AddButton));

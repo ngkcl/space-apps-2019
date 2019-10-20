@@ -1,3 +1,4 @@
+
 import numpy as np
 from co2.product import getData
 import sys
@@ -17,6 +18,8 @@ class FoodEmission():
     UK_avg = 8.46 / 365 * 1000
 
 
+    def beef(self):
+        return getData('beef')[0][1] 
 
     def burger(self):
         return getData('beef')[0][1] * 0.2 + getData('bread')[0][1] * 0.1\
@@ -28,14 +31,16 @@ class FoodEmission():
     def tescoMealDeal(self):
         return getData('bread')[0][1] * 0.1 + getData('chicken')[0][1] * 0.1 + getData('tomato*l')[0][1] * 0.1
 
+    def tomatoes(self):
+        return getData('Tomatoes')[0][1]
 
-    def calculateSingleEmission(self, foodItem):
-        return eval('self.'+foodItem+'()')
+    def calculateSingleEmission(self, foodItem, mass):
+        return mass * eval("self." + foodItem + "()")
 
 
     def foodAverage(self, user_id):
         meanEmission = self.foodPercent * self.UK_avg
-        yourMean = avgQuery(user_id, 'food')
+        yourMean = avgQuery(user_id, 'eat')
 
         return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score
 

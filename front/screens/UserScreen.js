@@ -13,6 +13,7 @@ import { Card, Block } from 'galio-framework';
 import { StyleSheet, Text, View, Animated, ScrollView } from 'react-native';
 import { theme, withGalio, GalioProvider } from 'galio-framework'
 
+import axios from "axios"
 
 
 const chartConfig = {
@@ -53,12 +54,11 @@ class UserScreen extends React.Component {
           
         this.animation.play();
 
-        let data = await fetch("http://10.70.43.220:5000/data/temperature/5/2200")
-        let result = await data.json()
+        let { data } = await axios.get("http://10.70.43.220:5000/data/temperature/5/2200")
 
         this.setState({
-            labels: result.labels,
-            datasets: result.datasets.map(dataset => ({ ...dataset, color: (o) => dataset.color }))
+            labels: data.labels,
+            datasets: data.datasets.map(dataset => ({ ...dataset, color: (o) => dataset.color }))
         })
     }
 

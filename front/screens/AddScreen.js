@@ -37,7 +37,22 @@ const DATA_REPRESENTATION = {
                     },
                     {
                         id: uuidv4(),
-                        'name': 'Tram',
+                        'name': 'Coach',
+                        'selected': false
+                    },
+                    {
+                        id: uuidv4(),
+                        'name': 'Walking',
+                        'selected': false
+                    },
+                    {
+                        id: uuidv4(),
+                        'name': 'Car',
+                        'selected': false
+                    },
+                    {
+                        id: uuidv4(),
+                        'name': 'Plane',
                         'selected': false
                     }
                 ],
@@ -60,7 +75,7 @@ const DATA_REPRESENTATION = {
                     },
                     {
                         id: uuidv4(),
-                        'name': 'Bananas',
+                        'name': 'Tomatoes',
                         'selected': false
                     },
                     {
@@ -135,7 +150,7 @@ class AddScreen extends React.Component {
         }
         this.setState({...sel});
         this.props.addDataSelection({...sel})
-        this.props.uploadDataPointAsync();
+        // this.props.uploadDataPointAsync();
     }
     
     render() {

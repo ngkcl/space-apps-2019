@@ -22,15 +22,17 @@ class DataPoint(Model):
         database = db
 
 
-def avgQuery(user_id, type):
-    a=(DataPoint
+def avgQuery(user_id, category):
+    dataPoints = list(DataPoint
         .select(fn.Sum(DataPoint.gag).alias('emission_avg'))
-        .where(DataPoint.time.between("7daysago", "now") and DataPoint.user == user_id and DataPoint.category == type)
-        .dicts())
+        .where(DataPoint.time.between("7daysago", "now") and DataPoint.user == user_id and DataPoint.category == category)
+        .objects())
 
-    b = [i['emission_avg'] for i in a][0] / 7
+    print(dataPoints)
 
-    return b
+    
+
+    return (dataPoints[0].emission_avg or 0) / 7
 
 
 
