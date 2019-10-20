@@ -114,7 +114,7 @@ class HomeScreen extends React.Component {
                     title="You are here!"
                     coordinate={{
                         ...DEFAULT_REGION,
-                        ...this.props.location.coordinate.latitude,
+                        ...this.props.location.coordinate,
                     }}
                 />
             </MapView>

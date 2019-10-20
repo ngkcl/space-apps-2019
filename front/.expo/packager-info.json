@@ -1,9 +1,9 @@
 {
   "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://8y-fkw.anonymous.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.8y-fkw.anonymous.front.exp.direct",
-  "ngrokPid": 215122,
+  "expoServerNgrokUrl": "https://8y-fkw.hjklmn.front.exp.direct",
+  "packagerNgrokUrl": "https://packager.8y-fkw.hjklmn.front.exp.direct",
+  "ngrokPid": 15261,
   "devToolsPort": 19002,
   "packagerPort": 19003,
-  "packagerPid": 215087
+  "packagerPid": 15234
 }

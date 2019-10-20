@@ -178,9 +178,9 @@ class UserScreen extends React.Component {
                         />
 
                         <Block style={styles.textBlock2}>
-                            <Text p>What about that graph above? The gray line shows the predicted average global temperature if everyone suddenly adopted your way of life. The two extremes are shown in <Text color="red">red</Text> (worst case scenario) and <Text color="green">green</Text>(best case scenario){"\n"} </Text>
+                            <Text p>What about that graph above? The gray line shows the predicted average global temperature if everyone suddenly adopted your lifestyle. The two extremes are shown in <Text color="red">red</Text> (worst case scenario) and <Text color="green">green</Text>(best case scenario){"\n"} </Text>
 
-                            <Text p style={{marginBottom: 10}}>We estimated that if everyone kept this up, the year in which the 2 degree point of no return is reached in the year:</Text>
+                            <Text p style={{marginBottom: 10}}>We estimate that at this rate, the year in which the 2 degree point of no return is reached in the year:</Text>
                             <Text h3 bold>{ this.state.time }</Text>
                             <Text p style={{marginTop: 20}}>That's all from me today! Was that positive? negative? I can't decide, I'm just some complicated if-statements in a machine! What I am here for is to give you a realistic view on your impact on the environment and help you out with some tips! <Text italic>See you tomorrow for your next report!</Text></Text>
                         </Block>
