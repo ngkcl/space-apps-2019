@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 25,
     marginTop: Constants.statusBarHeight + 15,
-    borderRadius: 2
+    borderRadius: 10
   },
   text1: {
     width: 170,

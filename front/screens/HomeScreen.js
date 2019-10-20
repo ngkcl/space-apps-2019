@@ -8,6 +8,7 @@ import {
 
 
 import MapView, {
+    Marker,
 	PROVIDER_GOOGLE
 } from 'react-native-maps';
 
@@ -23,6 +24,8 @@ import {
 } from '../functions/geoFenceLocal';
 
 import timeout from '../functions/timeout';
+
+import manMarker from '../assets/man.png'
 
 import {
     getLocationAsync,
@@ -102,10 +105,17 @@ class HomeScreen extends React.Component {
                 region={{
                     ...DEFAULT_REGION,
                     ...this.props.location.coordinate,
-                    longitudeDelta: 0.001,
-                    latitudeDelta: 0.001
+                    longitudeDelta: 0.005,
+                    latitudeDelta: 0.005
                 }}
             >
+                <Marker 
+                    image={manMarker}
+                    title="You are here!"
+                    coordinate={{
+                        ...this.props.location.coordinate
+                    }}
+                />
             </MapView>
         </View> 
         );

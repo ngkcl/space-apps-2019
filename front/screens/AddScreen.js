@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 import { addDataSelection, uploadDataPointAsync } from '../redux/actions';
 
 import uuidv4 from 'uuid/v4';
+import moment from 'moment';
 
 const DATA_REPRESENTATION = {
     dataTypes: {
@@ -143,14 +144,12 @@ class AddScreen extends React.Component {
     }
     
     _selectType = sel => {
-        // alert("selected " + JSON.stringify(sel));
         if (Object.keys(sel)[0] == 'dataType') {
             this.setState({...DEFAULT_STATE})
             this.props.addDataSelection({...DEFAULT_STATE})
         }
         this.setState({...sel});
         this.props.addDataSelection({...sel})
-        // this.props.uploadDataPointAsync();
     }
     
     render() {
