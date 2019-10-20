@@ -69,7 +69,8 @@ const AddButton = (props) => {
                     if (curr.key != 'Add') {
                         props.navigation.navigate("Add");
                     } else {
-                        props.uploadDataPointAsync()
+                        props.uploadDataPointAsync();
+                        alert('Sucessfully added data!');
                     }
                 }}
                 // underlayColor="#3498db"
