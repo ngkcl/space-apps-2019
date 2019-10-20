@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://n4-inz.hjklmn.front.exp.direct",
   "packagerNgrokUrl": "https://packager.n4-inz.hjklmn.front.exp.direct",
-  "ngrokPid": 24860,
+  "ngrokPid": 26738,
   "devToolsPort": 19002,
   "packagerPort": 19005,
-  "packagerPid": 24834
+  "packagerPid": 26712
 }
