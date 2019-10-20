@@ -1,13 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_jwt import JWT, jwt_required, current_identity
+from flasgger import Swagger
 
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from datetime import datetime
 
 from temperature.cmip5_utility import CMIP5
+from co2.food_test import FoodEmission
 from users.user import User, DataPoint
-from flasgger import Swagger
 from VehicleCalculator import VehicleCalculator
+
 
 cmip5 = CMIP5()
 
@@ -31,6 +33,14 @@ jwt = JWT(app, authenticate, identity)
 @app.route('/')
 def index():
     return ""
+
+@app.route('/data/time/<temperature>')
+@jwt_required()
+def time(temperature):
+	temperature = float(temperature)
+	emissions = FoodEmission.foodAverage(current_identity.id)
+	return cmip5.invTrace(emissions, temperature)
+  
 
 @app.route('/data/temperature/<emission>/')
 @app.route('/data/temperature/<emission>/<int:year>')

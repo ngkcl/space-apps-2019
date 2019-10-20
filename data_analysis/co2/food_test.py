@@ -35,8 +35,8 @@ class FoodEmission():
         return this[foodItem]()
 
 
-    def foodAverage():
+    def foodAverage(user_id):
         meanEmission = foodPercent * UK_avg
-        yourMean = avgQuery()
+        yourMean = avgQuery(user_id)
 
         return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score

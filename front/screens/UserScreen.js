@@ -41,7 +41,7 @@ class UserScreen extends React.Component {
 
         this.animation.play();
 
-        let data = await fetch("http://10.70.43.220:5000/data/5/2200")
+        let data = await fetch("http://10.70.43.220:5000/data/temperature/5/2200")
         let result = await data.json()
 
         this.setState({
