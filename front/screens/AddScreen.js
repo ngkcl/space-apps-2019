@@ -13,6 +13,10 @@ import { theme, withGalio, GalioProvider } from 'galio-framework'
 import { SvgXml } from 'react-native-svg';
 import hand from "../assets/hand"
 
+import { connect } from 'react-redux';
+
+import { addDataSelection, uploadDataPointAsync } from '../redux/actions';
+
 import uuidv4 from 'uuid/v4';
 
 const DATA_REPRESENTATION = {
@@ -127,8 +131,11 @@ class AddScreen extends React.Component {
         // alert("selected " + JSON.stringify(sel));
         if (Object.keys(sel)[0] == 'dataType') {
             this.setState({...DEFAULT_STATE})
+            this.props.addDataSelection({...DEFAULT_STATE})
         }
-        this.setState({...sel})
+        this.setState({...sel});
+        this.props.addDataSelection({...sel})
+        this.props.uploadDataPointAsync();
     }
     
     render() {
@@ -196,4 +203,17 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddScreen;
+const mapStateToProps = state => ({
+    ...state.selection
+});
+
+const mapDispatchToProps = dispatch => ({
+    addDataSelection: data => {
+        dispatch(addDataSelection(data))
+    },
+    uploadDataPointAsync: () => {
+        dispatch(uploadDataPointAsync())
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddScreen)

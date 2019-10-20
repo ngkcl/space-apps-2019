@@ -38,6 +38,11 @@ import AddDataSelectionScreen from './screens/AddDataSelectionScreen';
 
 import AddButton from './components/AddButton';
 
+
+// NOTE: DEV ----------------------
+console.disableYellowBox = true;
+// ================================
+
 const TabNavigator = createBottomTabNavigator({
   Map: {
     screen: HomeScreen
@@ -87,7 +92,7 @@ const TabNavigator = createBottomTabNavigator({
     }
   }),
   tabBarOptions: {
-    activeTintColor: 'tomato',
+    activeTintColor: '#ff147c',
     inactiveTintColor: 'gray',
     showLabel: true
   },

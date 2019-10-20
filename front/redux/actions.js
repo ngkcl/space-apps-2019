@@ -2,9 +2,15 @@ import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 
-export const ADD_DATA_POINT = 'ADD_DATA_POINT';
+import axios from 'axios';
 
-// Async functions:
+// Stupid, remove later:
+import store from '../redux/store';
+// ---------------------
+
+const API_URL = 'http://10.70.43.220:5000';
+
+// Async functions constants:
 export const GET_LOCATION_START = 'GET_LOCATION_START';
 export const GET_LOCATION_FAIL = 'GET_LOCATION_FAIL';
 export const GET_LOCATION_SUCCESS = 'GET_LOCATION_SUCCESS';
@@ -17,9 +23,16 @@ export const ENABLE_BACKGROUND_LOCATION_START = 'ENABLE_BACKGROUND_LOCATION_STAR
 export const ENABLE_BACKGROUND_LOCATION_FAIL = 'ENABLE_BACKGROUND_LOCATION_FAIL';
 export const ENABLE_BACKGROUND_LOCATION_SUCCESS = 'ENABLE_BACKGROUND_LOCATION_SUCCESS';
 
-export const BACKGROUND_LOCATION_UPDATE = "BACKGROUND_LOCATION_UPDATE";
+export const UPLOAD_DATA_POINT_START = 'UPLOAD_DATA_POINT_START';
+export const UPLOAD_DATA_POINT_FAIL = 'UPLOAD_DATA_POINT_FAIL';
+export const UPLOAD_DATA_POINT_SUCCESS = 'UPLOAD_DATA_POINT_SUCCESS';
+// ----------------------------
 
+// Other constants:
+export const BACKGROUND_LOCATION_UPDATE = "BACKGROUND_LOCATION_UPDATE";
+export const ADD_DATA_POINT = 'ADD_DATA_POINT';
 export const ADD_DATA_SELECTION = "ADD_DATA_SELECTION";
+// ----------------------------
 
 
 export const addDataPoint = data => ({
@@ -31,6 +44,20 @@ export const addDataSelection = data => ({
 	type: ADD_DATA_SELECTION,
 	payload: data
 })
+
+export const uploadDataPointAsync = () => async dispatch => {
+	dispatch({type: UPLOAD_DATA_POINT_START});
+
+	try {
+		let selection = store.getState().selection;
+		let res = await axios.post(API_URL + '/user/dataPoint', selection);
+	} catch (err) {
+		dispatch({
+			type: UPLOAD_DATA_POINT_FAIL,
+			payload: err
+		})
+	}
+}
 
 export const getLocationAsync = () => async dispatch => {
     dispatch({ type: GET_LOCATION_START });
