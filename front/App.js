@@ -6,6 +6,7 @@ import { Root } from "native-base";
 // Nav:
 import {
   createAppContainer,
+  createSwitchNavigator
 } from 'react-navigation';
 
 import {
@@ -32,7 +33,7 @@ import HomeScreen from './screens/HomeScreen';
 import UserScreen from './screens/UserScreen';
 import AddScreen from './screens/AddScreen';
 import LoginScreen from './screens/LoginScreen';
-import SignupScreen from './screens/SignupScreen'
+import SignUpScreen from './screens/SignUpScreen';
 
 import AddDataSelectionScreen from './screens/AddDataSelectionScreen';
 
@@ -45,92 +46,114 @@ console.disableYellowBox = true;
 
 const TabNavigator = createBottomTabNavigator({
   Map: {
-    screen: HomeScreen
+	screen: HomeScreen
   },
   Add: {
-    screen: AddScreen,
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: (<AddButton />)
-    })
+	screen: AddScreen,
+	navigationOptions: ({ navigation }) => ({
+	  tabBarIcon: (<AddButton />)
+	})
   },
   User: {
-    screen: UserScreen
+	screen: UserScreen
   },
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, horizontal, tintColor }) => {
-      // tintColor = ''
-      const { routeName } = navigation.state;
+	tabBarIcon: ({ focused, horizontal, tintColor }) => {
+	  // tintColor = ''
+	  const { routeName } = navigation.state;
 
-      let IconComponent = MaterialCommunityIcons;
-      let iconName = '';
-      if (routeName == 'Map') {
-        iconName = `map${focused ? '' : '-outline'}`;
-      } else if (routeName == 'User') {
-        iconName = `account`;
-      }
+	  let IconComponent = MaterialCommunityIcons;
+	  let iconName = '';
+	  if (routeName == 'Map') {
+		iconName = `map${focused ? '' : '-outline'}`;
+	  } else if (routeName == 'User') {
+		iconName = `account`;
+	  }
 
-      return <IconComponent name={iconName} size={25} color={tintColor} />;
-    },
-    tabBarLabel: ({ focused, tintColor }) => {
-      const { routeName } = navigation.state;
-      if (routeName === "Add") return <Text />;
-      else
-        return (
-          <Text
-            style={{
-              // fontFamily: Globals.font_primary,
-              fontSize: 12,
-              alignSelf: "center",
-              color: tintColor,
-              marginBottom: 2
-            }}
-          >
-            {routeName}
-          </Text>
-        );
-    }
+	  return <IconComponent name={iconName} size={25} color={tintColor} />;
+	},
+	tabBarLabel: ({ focused, tintColor }) => {
+	  const { routeName } = navigation.state;
+	  if (routeName === "Add") return <Text />;
+	  else
+		return (
+		  <Text
+			style={{
+			  // fontFamily: Globals.font_primary,
+			  fontSize: 12,
+			  alignSelf: "center",
+			  color: tintColor,
+			  marginBottom: 2
+			}}
+		  >
+			{routeName}
+		  </Text>
+		);
+	}
   }),
   tabBarOptions: {
-    activeTintColor: '#ff147c',
-    inactiveTintColor: 'gray',
-    showLabel: true
+	activeTintColor: '#ff147c',
+	inactiveTintColor: 'gray',
+	showLabel: true
   },
   initialRouteName: 'Map'
 });
 
 const HomeStack = createStackNavigator({
   Home: {
-    screen: TabNavigator,
-    navigationOptions: {
-      header: null
-    }
+	screen: TabNavigator,
+	navigationOptions: {
+	  header: null
+	}
   },
   AddData: {
-    screen: AddDataSelectionScreen,
-    navigationOptions: {
-      header: null
-    }
+	screen: AddDataSelectionScreen,
+	navigationOptions: {
+	  header: null
+	}
+  }
+});
+
+const AuthStack = createStackNavigator({
+  Login: {
+	screen: LoginScreen,
+	navigationOptions: {
+	  header: null
+	}
+  },
+  SignUp: {
+	screen: SignUpScreen,
+	navigationOptions: {
+	  header: null
+	}
   }
 })
 
-const AppContainer = createAppContainer(HomeStack);
+const AppContainer = createAppContainer(createSwitchNavigator(
+	{
+		Auth: AuthStack,
+		App: HomeStack
+	}, {
+		initialRouteName: 'Auth'
+	}
+));
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <Root>
-        <AppContainer />
-      </Root>
-    </Provider>
+	<Provider store={store}>
+	  <Root>
+		<AppContainer />
+	  </Root>
+	</Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+	flex: 1,
+	backgroundColor: '#fff',
+	alignItems: 'center',
+	justifyContent: 'center',
   },
 });

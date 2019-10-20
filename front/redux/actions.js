@@ -34,7 +34,6 @@ export const ADD_DATA_POINT = 'ADD_DATA_POINT';
 export const ADD_DATA_SELECTION = "ADD_DATA_SELECTION";
 // ----------------------------
 
-
 export const addDataPoint = data => ({
     type: ADD_DATA_POINT,
     payload: data
@@ -50,7 +49,7 @@ export const uploadDataPointAsync = () => async dispatch => {
 
 	try {
 		let selection = store.getState().selection;
-		let res = await axios.post(API_URL + '/user/dataPoint', selection);
+		let res = await axios.post(API_URL + '/user/datapoint', selection);
 	} catch (err) {
 		dispatch({
 			type: UPLOAD_DATA_POINT_FAIL,

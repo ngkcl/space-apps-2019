@@ -16,7 +16,7 @@ import {KeyboardAvoidingView} from 'react-native';
 
 import axios from 'axios';
 
-export default class LoginScreen extends React.Component {
+export default class SignUpScreen extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = { username: '', password: '', confirmPassword: '', help: false};
@@ -26,13 +26,16 @@ export default class LoginScreen extends React.Component {
 			this.setState({ [key]: text })
 	}
 
-	validate(){
+	async validate(){
 		if(this.state.password == this.state.confirmPassword){ // to add password strength in future
-			axios({
+			let res = await axios({
 			  method: 'post',
 			  url: 'http://10.70.43.220:5000/user/register',
 			  data: this.state
 			});
+
+			alert('Successful registration! Please login.');
+			this.props.navigation.navigate('Login');
 		}
 		else{
 			this.changeText("help", true)
@@ -50,7 +53,17 @@ export default class LoginScreen extends React.Component {
 				<Input onChangeText={(t) => this.changeText("username", t)} placeholder="Username" style={styles.inputBox} />
 				<Input onChangeText={(t) => this.changeText("password", t)} placeholder="Password" password viewPass style={styles.inputBox}/>
 				<Input onChangeText={(t) => this.changeText("confirmPassword", t)} placeholder="Confirm Password" password viewPass help={this.state.help ? "Password does not match" : " "} bottomHelp={this.state.help} style={styles.inputBox}/>
-				<Button round size="small" color="#50C7C7" shadowless onPress={() => this.validate()}> Sign up! </Button>
+				<Button round size="small" color="#FFA086" shadowless onPress={() => this.validate()}> Sign up! </Button>
+				<Button 
+					round 
+					size="small" 
+					color="#50C7C7" 
+					shadowless 
+					onPress={() => this.props.navigation.navigate('Login')}
+					style={{
+						marginTop: 7
+					}}
+				> Log in! </Button>
 			</KeyboardAvoidingView>
 		)
 

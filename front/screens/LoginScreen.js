@@ -12,7 +12,7 @@ import {
 	Text
 } from 'galio-framework';
 
-import {KeyboardAvoidingView} from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 
 import axios from 'axios';
 
@@ -23,18 +23,20 @@ export default class LoginScreen extends React.Component {
 	}
 
 	changeText(key, text){
-			this.setState({ [key]: text })
+		this.setState({ [key]: text })
 	}
 
-	validate(){
+	async validate(){
 		let formData = new FormData()
 		formData.append("username", this.state.username)
 		formData.append("password", this.state.password)
-		axios({
+		let res = await axios({
 		  method: 'post',
 		  url: 'http://10.70.43.220:5000/login',
 		  data: formData
 		});
+
+		this.props.navigation.navigate('App');
 	}
 
 	render(){
@@ -43,9 +45,17 @@ export default class LoginScreen extends React.Component {
 				<View>
 				<Text h3 bold style={styles.logInStyle}>Log In!</Text>
 				</View>
-				<Input onChangeText={(t) => this.changeText("username", t)} placeholder="Username" style={styles.inputBox} />
-				<Input onChangeText={(t) => this.changeText("password", t)} placeholder="Password" password viewPass style={styles.inputBox}/>
+				<Input onChangeText={username => this.setState({username})} placeholder="Username" style={styles.inputBox} />
+				<Input onChangeText={password => this.setState({password})} placeholder="Password" password viewPass style={styles.inputBox}/>
 				<Button round size="small" color="#50C7C7" shadowless onPress={() => this.validate()}> Log in! </Button>
+				<Button 
+					round 
+					size="small" 
+					color="#FFA086" 
+					shadowless 
+					onPress={() => this.props.navigation.push('SignUp')}
+					style={{marginTop: 7}}
+				> Sign up! </Button>
 			</KeyboardAvoidingView>
 		)
 
@@ -54,7 +64,6 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
 	inputBox: {
 		width: "70%"
-
 	},
 	container: {
     	flex: 1,
