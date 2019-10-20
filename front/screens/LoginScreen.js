@@ -26,15 +26,18 @@ export default class LoginScreen extends React.Component {
 			this.setState({ [key]: text })
 	}
 
-	validate(){
+	async validate(){
 		let formData = new FormData()
 		formData.append("username", this.state.username)
 		formData.append("password", this.state.password)
-		axios({
+		let response = await axios({
 		  method: 'post',
 		  url: 'http://10.70.43.220:5000/login',
 		  data: formData
 		});
+
+		let token = response.headers["jwt-token"]
+		axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
 	}
 
 	render(){
