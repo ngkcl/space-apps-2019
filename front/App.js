@@ -21,7 +21,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 
-import { 
+import {
   Ionicons,
   MaterialIcons,
   MaterialCommunityIcons,
@@ -40,8 +40,8 @@ const TabNavigator = createBottomTabNavigator({
   },
   Add: {
     screen: AddScreen,
-    navigationOptions: ({navigation}) => ({
-      tabBarIcon: (<AddButton navigation={navigation}/>),
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: (<AddButton navigation={navigation} />),
       tabBarLabel: ""
     })
   },
@@ -49,7 +49,7 @@ const TabNavigator = createBottomTabNavigator({
     screen: UserScreen
   },
 }, {
-  defaultNavigationOptions: ({navigation}) => ({
+  defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       // tintColor = ''
       const { routeName } = navigation.state;
@@ -65,9 +65,9 @@ const TabNavigator = createBottomTabNavigator({
       return <IconComponent name={iconName} size={25} color={tintColor} />;
     }
   }),
-  tabBarOptions: ({navigation}) =>  ({
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+  tabBarOptions: ({ navigation }) => ({
+    activeTintColor: 'tomato',
+    inactiveTintColor: 'gray',
   }),
   initialRouteName: 'Map'
 });

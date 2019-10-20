@@ -1,12 +1,10 @@
 import numpy as np
-import getData from product
+from co2.product import getData
 import sys
 
 sys.path.append('../')
 
-from user import avgQuery
-
-
+from users.user import avgQuery
 
 class FoodEmission():
     '''
