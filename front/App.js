@@ -63,12 +63,31 @@ const TabNavigator = createBottomTabNavigator({
       }
 
       return <IconComponent name={iconName} size={25} color={tintColor} />;
+    },
+    tabBarLabel: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+      if (routeName === "Add") return <Text />;
+      else
+        return (
+          <Text
+            style={{
+              // fontFamily: Globals.font_primary,
+              fontSize: 12,
+              alignSelf: "center",
+              color: tintColor,
+              marginBottom: 2
+            }}
+          >
+            {routeName}
+          </Text>
+        );
     }
   }),
-  tabBarOptions: ({ navigation }) => ({
+  tabBarOptions: {
     activeTintColor: 'tomato',
     inactiveTintColor: 'gray',
-  }),
+    showLabel: true
+  },
   initialRouteName: 'Map'
 });
 
