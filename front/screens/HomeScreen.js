@@ -108,11 +108,13 @@ class HomeScreen extends React.Component {
                     latitudeDelta: 0.005
                 }}
             >
+               
                 <Marker 
                     image={manMarker}
                     title="You are here!"
                     coordinate={{
-                        ...this.props.location.coordinate
+                        ...DEFAULT_REGION,
+                        ...this.props.location.coordinate.latitude,
                     }}
                 />
             </MapView>

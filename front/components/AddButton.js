@@ -12,7 +12,6 @@ import Icon from '@expo/vector-icons/FontAwesome';
 
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
-
 import { addDataSelection, uploadDataPointAsync } from '../redux/actions';
 
 const SIZE = 80;
@@ -20,6 +19,8 @@ const SIZE = 80;
 const AddButton = (props) => {
 
     const [scaleAnim] = useState(new Animated.Value(1))  // Initial value for opacity: 0
+
+    const [color] = useState(new Animated.Value(0))  // Initial value for opacity: 0
 
 
 
@@ -71,7 +72,7 @@ const AddButton = (props) => {
                         props.uploadDataPointAsync()
                     }
                 }}
-                underlayColor="#3498db"
+                // underlayColor="#3498db"
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',
