@@ -35,12 +35,39 @@ class UserScreen extends React.Component {
             screenWidth: Dimensions.get("window").width,
             labels: [0],
             datasets: [{ data: [0] }],
-            scrollY: new Animated.Value(0)
+            scrollY: new Animated.Value(0),
+            time: 0,
+            avg_emissions: 0
         }
     }
 
     componentWillUnmount() {
         this.subscription.remove()
+    }
+
+    async temperatre() {
+
+        let { data } = await axios.get("http://10.70.43.220:5000/data/temperature/2200")
+
+        this.setState({
+            labels: data.labels,
+            datasets: data.datasets.map(dataset => ({ ...dataset, color: (o) => dataset.color }))
+        })
+
+    }
+
+    async time() {
+        let { data } = await axios.get("http://10.70.43.220:5000/data/time/2")
+        this.setState({
+            time: data
+        })
+    }
+
+    async avg_emissions() {
+        let { data } = await axios.get("http://10.70.43.220:5000/user/avg_emissions")
+        this.setState({
+            avg_emissions: data
+        })
     }
 
     async componentDidMount() {
@@ -51,15 +78,12 @@ class UserScreen extends React.Component {
             }
           );
 
+        await this.temperatre()
+        await this.time()
+        await this.avg_emissions()
           
         this.animation.play();
 
-        let { data } = await axios.get("http://10.70.43.220:5000/data/temperature/5/2200")
-
-        this.setState({
-            labels: data.labels,
-            datasets: data.datasets.map(dataset => ({ ...dataset, color: (o) => dataset.color }))
-        })
     }
 
     render() {
@@ -97,7 +121,7 @@ class UserScreen extends React.Component {
                         [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
                         { useNativeDriver: true }
                     )} scrollEventThrottle={16} overScrollMode={'never'} style={{ zIndex: 10 }}>
-                    <Block backgroundColor="#FFF" height={1920} card center style={{ borderColor: "rgba(0,0,0,0)"  }} >
+                    <Block width={this.state.screenWidth - 20} backgroundColor="#FFF" height={1920} card center style={{ borderColor: "rgba(0,0,0,0)"  }} >
                         <LineChart
                             data={{
                                 labels: this.state.labels,
@@ -113,6 +137,8 @@ class UserScreen extends React.Component {
                                 marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(1)
                             }}
                         />
+                        <Text>Year in which 2 deg the point of no return is reachedif everybody acts as we do: { this.state.time }</Text>
+                        <Text>Out average emission for the past week in metric to per year { this.state.avg_emissions }  </Text>
                     </Block>
                 </Animated.ScrollView>
             </View>

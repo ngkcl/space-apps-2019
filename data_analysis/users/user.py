@@ -1,6 +1,7 @@
 from peewee import *
 from playhouse.sqlite_ext import *
 from os.path import dirname, abspath
+from datetime import date, timedelta
 
 
 db = SqliteDatabase(dirname(abspath(__file__)) + '/user.db')
@@ -23,10 +24,13 @@ class DataPoint(Model):
 
 
 def avgQuery(user_id, category):
-    dataPoints = list(DataPoint
+    sql = (DataPoint
         .select(fn.Sum(DataPoint.gag).alias('emission_avg'))
-        .where(DataPoint.time.between("7daysago", "now") and DataPoint.user == user_id and DataPoint.category == category)
-        .objects())
+        .where(DataPoint.time.between(date.today() - timedelta(days=1), date.today()) & (DataPoint.user == user_id) & (DataPoint.category == category))
+        .namedtuples())
+
+    print(sql)
+    dataPoints = list(sql)
 
     print(dataPoints)
 

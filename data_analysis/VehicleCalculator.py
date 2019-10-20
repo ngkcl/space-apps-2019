@@ -6,7 +6,7 @@ class VehicleCalculator():
 	plane = 254
 	car = 171
 	bus = 104
-	train = 41
+	tube = 41
 	coach = 27
 	walking = 0
 	maxWalkSpeed = 9.65606

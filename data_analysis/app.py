@@ -5,13 +5,13 @@ from flasgger import Swagger
 from collections import namedtuple
 
 from playhouse.shortcuts import model_to_dict, dict_to_model
-from datetime import datetime
+from datetime import date, timedelta
 
 from temperature.cmip5_utility import CMIP5
 from co2.food_test import FoodEmission
 from users.user import User, DataPoint
 from VehicleCalculator import VehicleCalculator
-
+# from 
 
 cmip5 = CMIP5()
 fem = FoodEmission()
@@ -49,15 +49,15 @@ def time(temperature):
 
 	"""
 	temperature = float(temperature)
-	emissions = FoodEmission.foodAverage(
+	emissions = fem.foodAverage(
 	    current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
-	return cmip5.invTrace(emissions, temperature)
+	return str( cmip5.invTrace(emissions, temperature) )
 
 
-@app.route('/data/temperature/<emission>/')
-@app.route('/data/temperature/<emission>/<int:year>')
+@app.route('/data/temperature/')
+@app.route('/data/temperature/<int:year>')
 @jwt_required()
-def emission(emission, year=2200):
+def emission(year=2200):
 	"""
 	emissions with year
 	---
@@ -183,7 +183,16 @@ def register():
 	)
 
 
+@app.route("/user/avg_emissions")
+@jwt_required()
+def avg_emissions():
+	return str( 
+		fem.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
+	)
+	
+
 @app.route("/user/datapoint", methods=["POST"])
+@jwt_required()
 def add_datapoint():
 	"""
 	Register yourself
@@ -218,13 +227,20 @@ def add_datapoint():
 	print(dataPoint)
 	category = dataPoint.dataType.lower()
 	gag = 0
-	if(category == "eat"):
+	if category == "eat":
 		gag = fem.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0])/1000)
-	elif(category == "commute"):
-		gag = VehicleCalculator.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0]))
+	elif category == "commute":
+		gag = VehicleCalculator.polutionCalc(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0]))
 
+	d = None
+	if dataPoint.date == "Today":
+		d = date.today()
+	elif dataPoint.date == "Yesterday":
+		d = date.today() - timedelta(days=1)
+	else:
+		d = date.fromtimestamp(dataPoint.date) 
 
-	res = DataPoint.create(user=current_identity, gag=gag, time=datetime.fromtimestamp(dataPoint.date), category=dataPoint.dataType)
+	res = DataPoint.create(user=current_identity.id, gag=gag, time=d, category=category)
 	return str(res.id)
 
 @jwt_required()
@@ -250,8 +266,8 @@ def login():
 		description: User login failed.
 	"""
 	# try:
-	username=request.form.get("username")
-	password=request.form.get("password")
+	username = request.form.get("username")
+	password = request.form.get("password")
 
 	user=authenticate(username, password)
 	if not user:
