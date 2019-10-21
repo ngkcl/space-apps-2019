@@ -10,9 +10,9 @@ from playhouse.shortcuts import model_to_dict, dict_to_model
 from datetime import date, timedelta
 
 from temperature.cmip5_utility import CMIP5
-from co2.food_test import FoodEmission
-from users.user import User, DataPoint
-from VehicleCalculator import VehicleCalculator
+from co2.food.food_test import FoodEmission
+from models.users.user import User, DataPoint
+from co2.transport.VehicleCalculator import VehicleCalculator
 # from 
 
 cmip5 = CMIP5()
@@ -60,6 +60,24 @@ def time(temperature):
 @app.route('/data/temperature/<int:year>')
 @jwt_required()
 def emission(year=2200):
+    """
+    emissions with year
+    ---
+    produces:
+      -application/json
+    parameters:
+      - in: path
+        name: year
+        required: false
+        schema:
+            type: integer
+        description: Final year for graph, default 2200
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     step = 25
     user_id = current_identity.id
     
@@ -73,16 +91,88 @@ def emission(year=2200):
 
 @app.route('/data/vehicle/<distance>/<time>')
 def vehicleArray(distance, time):
+    """
+    Possible Vehicle
+    ---
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: distance
+        required: true
+        schema:
+            type: number
+        description: Takes distance travelled in km
+      - in: path
+        name: time
+        required: true
+        schema:
+            type: integer
+        description: Takes time in which distance was travelled in seconds
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     return jsonify({'vehicleArray': VehicleCalculator.vehicleCalc(float(distance), float(time))})
 
 
 @app.route('/data/polution/<vehicle>/<distance>')
 def polutionOut(vehicle, distance):
+    """
+    Polution out
+    ---
+    produces:
+      -application/json
+    parameters:
+      - in: path
+        name: vehicle
+        required: true
+        schema:
+            type: string
+        description: Take vehicle either "car", "train", "flight", "car", "bus", "coach", "walking"
+      - in: path
+        name: distance
+        required: true
+        schema:
+            type: numbers
+        description: Take distance in km
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     return jsonify({'carbonDioxideGrams': VehicleCalculator.polutionCalc(vehicle, float(distance))})
 
 
 @app.route('/user/register', methods=['POST'])
 def register():
+    """
+    Register yourself
+    ---
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: JSON parameters.
+        schema:
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     user = request.json
     return jsonify(
         User.create(username=user['username'], password=user['password']).id
@@ -92,6 +182,7 @@ def register():
 @app.route("/user/avg_emissions")
 @jwt_required()
 def avg_emissions():
+
     return str( 
         fem.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     )
@@ -126,7 +217,32 @@ def calendar(user_id):
 @app.route("/user/datapoint", methods=["POST"])
 @jwt_required()
 def add_datapoint():
-
+    """
+    Register yourself
+    ---
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: datapoint
+        description: JSON data point.
+        schema:
+            type: object
+            properties:
+                gag:
+                    type: number
+                time:
+                    type: integer
+                category:
+                    type: string
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     dataPoint = namedtuple('Struct', request.json.keys())(*request.json.values())
     
     print(dataPoint)
@@ -151,7 +267,25 @@ def add_datapoint():
 @jwt_required()
 @app.route("/login", methods=["POST"])
 def login():
-    
+    """
+    User authenticate method.
+    ---
+    description: Authenticate user with supplied credentials.
+    parameters:
+      - name: username
+        in: formData
+        type: string
+        required: true
+      - name: password
+        in: formData
+        type: string
+        required: true
+    responses:
+        200:
+            description: User successfully logged in.
+        400:
+            description: User login failed.
+    """
     username = request.form.get("username")
     password = request.form.get("password")
 
@@ -177,7 +311,16 @@ def login():
 @app.route('/user')
 @jwt_required()
 def user():
-
+    """
+    Check user.
+    ---
+    description: Check user.
+    responses:
+      200:
+        description: User successfully logged in.
+      400:
+        description: User not logged in.
+    """
     return jsonify(model_to_dict(current_identity))
 
 if __name__ == '__main__':

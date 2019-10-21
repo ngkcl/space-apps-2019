@@ -1,4 +1,4 @@
-from users.user import avgQuery
+from models.users.user import avgQuery
 
 
 class VehicleCalculator():
