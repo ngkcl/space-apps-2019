@@ -5,7 +5,6 @@ RUN yes | pacman -S poetry && mkdir /app
 RUN yes | pacman -S python-setuptools
 RUN yes | pacman -S python-pip
 
-RUN mkdir /app
 COPY pyproject.toml /app/
 
 WORKDIR "/app"
