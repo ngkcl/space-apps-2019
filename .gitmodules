@@ -1,0 +1,3 @@
+[submodule "footprints-integrations-backend"]
+	path = footprints-integrations-backend
+	url = git@github.com:ngkcl/footprints-integrations-backend.git
