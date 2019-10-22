@@ -1,14 +1,16 @@
-FROM python:3
+FROM archlinux/base
 
-RUN mkdir /app && cd /app && pip install poetry && poetry config settings.virtualenvs.create false
-RUN apt update && apt-get install libopenblas-dev -y
-RUN apt install python-scipy -y
+RUN yes | pacman -Sy
+RUN yes | pacman -S poetry && mkdir /app
+RUN yes | pacman -S python-setuptools
+RUN yes | pacman -S python-pip
 
 COPY pyproject.toml /app
+COPY poetry.lock /app
 
 WORKDIR "/app"
 
-RUN poetry install
+RUN poetry config settings.virtualenvs.create false && poetry install
 
 COPY ./* /app
 
