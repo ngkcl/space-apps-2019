@@ -8,7 +8,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: webfactory/ssh-agent@v0.1.1
       with:
-        ssh-private-key: >-
+        ssh-private-key: >
         -----BEGIN OPENSSH PRIVATE KEY-----
         b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
         NhAAAAAwEAAQAAAYEAu3Yw6T/GIzj+SRABmw0wUdH84k5ZR9twgsJkujtM+LWXiic11ahi
