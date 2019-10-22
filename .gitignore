@@ -95,3 +95,9 @@ RNTester/Pods/*
 # Expo
 .expo
 __generated__
+
+# Vim
+.*.swp
+.*.swo
+.*.swn
+.*.swm
