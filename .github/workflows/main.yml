@@ -1,0 +1,14 @@
+name: Docker Image CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      working-directory: ./back
+      run: |
+        docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
+        docker build . --file Dockerfile --tag app:latest
+        docker tag app:latest docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | cut -b1-8)
+        docker push docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | cut -b1-8)
