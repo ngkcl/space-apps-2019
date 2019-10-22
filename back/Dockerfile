@@ -2,6 +2,7 @@ FROM python:3
 
 RUN mkdir /app && cd /app && pip install poetry && poetry config settings.virtualenvs.create false
 RUN apt update && apt-get install libopenblas-dev -y
+RUN apt install python-scipy
 
 COPY pyproject.toml /app
 
@@ -14,5 +15,6 @@ COPY ./* /app
 
 EXPOSE 9999
 EXPOSE 5000
+EXPOSE 8888
 
-ENTRYPOINT flask run -h 0.0.0.0
+ENTRYPOINT bash ./run.sh
