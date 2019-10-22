@@ -8,4 +8,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       working-directory: ./back
-      run: docker build . --file Dockerfile --tag space-apps-2019:$(date +%s)
+      run: |
+        docker build . --file Dockerfile --tag space-apps-2019:latest
+        docker tag space-apps-2019:latest docker.pkg.github.com/ngkcl/space-apps-2019/space-apps-2019:${GITHUB_SHA}
+        docker push docker.pkg.github.com/ngkcl/space-apps-2019/space-apps-2019:${GITHUB_SHA}
