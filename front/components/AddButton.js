@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import {
     Animated,
     TouchableHighlight,
@@ -22,13 +22,9 @@ const AddButton = (props) => {
 
     const [color] = useState(new Animated.Value(0))  // Initial value for opacity: 0
 
-
-
     let curr = props.navigation.state.routes[props.navigation.state.index];
 
-    // React.useEffect(() => {
     if (curr.key == "Add") {
-
         Animated.timing(
             scaleAnim,
             {
@@ -37,7 +33,6 @@ const AddButton = (props) => {
             }
         ).start();
     } else {
-
         Animated.timing(
             scaleAnim,
             {
@@ -45,45 +40,26 @@ const AddButton = (props) => {
                 duration: 250,
             }
         ).start();
-
     }
 
-    // }, [scaleAnim])
-    // alert(JSON.stringify(curr))
+    _onButtonPress = () => {
+        if (curr.key != 'Add') {
+            props.navigation.navigate("Add");
+        } else {
+            props.uploadDataPointAsync();
 
+            // TODO: Make actual alert 
+            alert('Sucessfully added data!');
+        }
+    }
 
     return (
-        <Animatable.View style={{
-            position: 'absolute',
-            alignItems: 'center',
-            transform: [{ scale: scaleAnim }, {
-                translateY: 
-                scaleAnim.interpolate({
-                    inputRange: [1, 1.3],
-                    outputRange: [0, -24]
-                })
-            }]
-        }}>
+        <Animatable.View style={styles.animView}>
             <TouchableHighlight
-                onPress={() => {
-                    if (curr.key != 'Add') {
-                        props.navigation.navigate("Add");
-                    } else {
-                        props.uploadDataPointAsync();
-                        alert('Sucessfully added data!');
-                    }
-                }}
-                // underlayColor="#3498db"
-                style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: SIZE,
-                    height: SIZE,
-                    borderRadius: SIZE / 2,
-                    backgroundColor: '#48A2F8',
-                }}
+                style={styles.buttonHighlight}
+                onPress={() => _onButtonPress()}
             >
-                <Animatable.View style={{ opacity: scaleAnim }}>
+                <Animatable.View style={styles.animIcon}>
                     <Icon name="plus" size={24} color="#F8F8F8" />
                 </Animatable.View>
             </TouchableHighlight>
@@ -91,6 +67,30 @@ const AddButton = (props) => {
     );
 }
 
+const styles = StyleSheet.create({
+    buttonHighlight: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: SIZE,
+        height: SIZE,
+        borderRadius: SIZE / 2,
+        backgroundColor: '#48A2F8',
+    },
+    animView: {
+        position: 'absolute',
+        alignItems: 'center',
+        transform: [{ scale: scaleAnim }, {
+            translateY: 
+            scaleAnim.interpolate({
+                inputRange: [1, 1.3],
+                outputRange: [0, -24]
+            })
+        }]
+    },
+    animIcon: {
+        opacity: scaleAnim 
+    }
+})
 
 const mapDispatchToProps = dispatch => ({
     addDataSelection: data => {
@@ -100,6 +100,5 @@ const mapDispatchToProps = dispatch => ({
         dispatch(uploadDataPointAsync())
     }
 })
-
 
 export default connect(() => ({}), mapDispatchToProps)(withNavigation(AddButton));

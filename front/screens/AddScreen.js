@@ -19,7 +19,6 @@ import { connect } from 'react-redux';
 import { addDataSelection, uploadDataPointAsync } from '../redux/actions';
 
 import uuidv4 from 'uuid/v4';
-import moment from 'moment';
 
 const DATA_REPRESENTATION = {
     dataTypes: {

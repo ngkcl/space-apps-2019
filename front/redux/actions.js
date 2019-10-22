@@ -77,7 +77,6 @@ export const getLocationAsync = () => async dispatch => {
 			type: GET_LOCATION_SUCCESS,
 			payload: location
         })
-        alert("get location: " + JSON.stringify(location))
 	} catch(err) {
 		dispatch({
 			type: GET_LOCATION_FAIL,
@@ -86,9 +85,8 @@ export const getLocationAsync = () => async dispatch => {
 	}
 }
 
-const alertTaskStatus = async () => {
-	alert(await TaskManager.isTaskRegisteredAsync("BACKGROUND_LOCATION"))
-}
+// DEV - Alerts status on BACKGROUND_LOCATION task
+const alertTaskStatus = async () => alert(await TaskManager.isTaskRegisteredAsync("BACKGROUND_LOCATION"))
 
 export const watchLocationAsync = () => async dispatch => {
 	dispatch({ type: WATCH_LOCATION_START });
@@ -126,12 +124,10 @@ export const updateBackgroundLocation = location => ({
 	payload: location
 });
 
+
 TaskManager.defineTask("BACKGROUND_LOCATION", ({ data: { locations }, error }) => {
     if (error) {
         return;
-    }
-    for (i in locations) {
-        // alert(i);
     }
     for (loc in locations) {
 		updateBackgroundLocation(loc);

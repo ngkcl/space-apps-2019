@@ -60,7 +60,6 @@ const TabNavigator = createBottomTabNavigator({
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
 	tabBarIcon: ({ focused, horizontal, tintColor }) => {
-	  // tintColor = ''
 	  const { routeName } = navigation.state;
 
 	  let IconComponent = MaterialCommunityIcons;

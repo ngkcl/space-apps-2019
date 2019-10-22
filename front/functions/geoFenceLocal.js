@@ -9,12 +9,4 @@ export const getNearby = (lat, lng, maxRes, maxDist) => geokdbush.around(index, 
 
 export const getDistance = (lat1, lng1, lat2, lng2) => geokdbush.distance(lat1, lng1, lat2, lng2);
 
-export const getNearest = (userLat, userLng, maxDist) => {
-    let res = getNearby(userLat, userLng, Infinity, maxDist)[0]
-    if (res) {
-        // let { lat, lng } = res.geometry.location;
-        // let dist = getDistance(userLat, userLng, lat, lng);
-        // alert(dist);
-    }
-    return res;
-}
+export const getNearest = (userLat, userLng, maxDist) => getNearby(userLat, userLng, Infinity, maxDist)[0];

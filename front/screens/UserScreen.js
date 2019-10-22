@@ -23,8 +23,6 @@ const chartConfig = {
     backgroundGradientTo: '#1b3fa0',
     backgroundGradientToOpacity: 0,
     color: (opacity = 1) => `rgba(44, 44, 44, ${opacity})`,
-    // strokeWidth: 2, // optional, default 3
-    // barPercentage:0.5
 }
 
 class UserScreen extends React.Component {
@@ -48,7 +46,6 @@ class UserScreen extends React.Component {
     }
 
     async temperatre() {
-
         let { data } = await axios.get("http://10.70.43.220:5000/data/temperature/2200")
 
         this.setState({
@@ -81,7 +78,6 @@ class UserScreen extends React.Component {
                 return { date: ds, count: parseFloat(el.avg) }
             })
         })
-        // alert(JSON.stringify(this.state.calendar))
 
     }
 
@@ -184,14 +180,8 @@ class UserScreen extends React.Component {
                             }}
                             width={this.state.screenWidth - 20}
                             height={256}
-                            // verticalLabelRotation={30}
                             chartConfig={chartConfig}
-                            // withDots={false}
-                            style={{
-                                marginTop: 24,
-                                borderRadius: 16,
-                                marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(1)
-                            }}
+                            style={styles.lineChart}
                         />
 
                         <Block style={styles.textBlock2}>
@@ -229,6 +219,11 @@ const styles = StyleSheet.create({
     },
     textBlock2: {
         alignItems: 'center'
+    },
+    lineChart: {
+        marginTop: 24,
+        borderRadius: 16,
+        marginHorizontal: PixelRatio.getPixelSizeForLayoutSize(1)
     }
 })
 
