@@ -5,13 +5,14 @@ RUN yes | pacman -S poetry && mkdir /app
 RUN yes | pacman -S python-setuptools
 RUN yes | pacman -S python-pip
 
-COPY pyproject.toml /app
+RUN mkdir /app
+COPY pyproject.toml /app/
 
 WORKDIR "/app"
 
 RUN poetry config settings.virtualenvs.create false && poetry install
 
-COPY ./* /app
+COPY ./* /app/
 
 
 EXPOSE 9999
