@@ -52,7 +52,10 @@ export default class SignUpScreen extends React.Component {
 				</View>
 				<Input onChangeText={(t) => this.changeText("username", t)} placeholder="Username" style={styles.inputBox} />
 				<Input onChangeText={(t) => this.changeText("password", t)} placeholder="Password" password viewPass style={styles.inputBox}/>
-				<Input onChangeText={(t) => this.changeText("confirmPassword", t)} placeholder="Confirm Password" password viewPass help={this.state.help ? "Password does not match" : " "} bottomHelp={this.state.help} style={styles.inputBox}/>
+				<View style={(!this.state.help) ? styles.passwordNotMatch : ""}>
+				<Text muted color="red" style={(!this.state.help) ? styles.passwordNotMatch : styles.passwordMatch}> Password does not match </Text> 
+				</View>
+				<Input onChangeText={(t) => this.changeText("confirmPassword", t)} placeholder="Confirm Password" password viewPass style={styles.inputBox}/>
 				<Button round size="small" color="#FFA086" shadowless onPress={() => this.validate()}> Sign up! </Button>
 				<Button 
 					round 
@@ -81,5 +84,11 @@ const styles = StyleSheet.create({
 	},
 	logInStyle: {
 		paddingBottom: 10
+	},
+	passwordNotMatch: {
+		display: "none"
+	},
+	passwordMatch: {
+		fontSize: 14
 	}
 });
