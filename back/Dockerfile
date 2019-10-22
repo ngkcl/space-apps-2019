@@ -2,8 +2,7 @@ FROM archlinux/base
 
 RUN yes | pacman -Sy
 RUN yes | pacman -S poetry && mkdir /app
-RUN yes | pacman -S python-setuptools
-RUN yes | pacman -S python-pip
+RUN yes | pacman -S python-setuptools python-pip
 
 COPY pyproject.toml /app/
 
