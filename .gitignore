@@ -52,6 +52,8 @@ node_modules
 .nvm
 /bots/node_modules/
 package-lock.json
+npm-debug.log
+yarn-error.log
 
 # OS X
 .DS_Store
@@ -89,3 +91,7 @@ RNTester/Pods/*
 # react-native-codegen
 /ReactCommon/fabric/components/rncore/
 /schema-rncore.json
+
+# Expo
+.expo
+__generated__
