@@ -1,0 +1,11 @@
+name: Docker Image CI
+
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      working-directory: ./back
+      run: docker build . --file Dockerfile --tag space-apps-2019:$(date +%s)
