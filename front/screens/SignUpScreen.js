@@ -34,6 +34,7 @@ export default class SignUpScreen extends React.Component {
 			  data: this.state
 			});
 
+			// TODO: Make proper alert
 			alert('Successful registration! Please login.');
 			this.props.navigation.navigate('Login');
 		}
