@@ -2,7 +2,7 @@ FROM python:3
 
 RUN mkdir /app && cd /app && pip install poetry && poetry config settings.virtualenvs.create false
 RUN apt update && apt-get install libopenblas-dev -y
-RUN apt install python-scipy
+RUN apt install python-scipy -y
 
 COPY pyproject.toml /app
 
