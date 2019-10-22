@@ -7,4 +7,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
+      working-directory: ./back
       run: docker build . --file Dockerfile --tag space-apps-2019:$(date +%s)
