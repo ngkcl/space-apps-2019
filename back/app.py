@@ -10,13 +10,12 @@ from playhouse.shortcuts import model_to_dict, dict_to_model
 from datetime import date, timedelta
 
 from temperature.cmip5_utility import CMIP5
-from co2.food.food_test import FoodEmission
+from co2.food.FoodCalculator import FoodCalculator
 from models.users.user import User, DataPoint
 from co2.transport.VehicleCalculator import VehicleCalculator
-# from 
+# from
 
 cmip5 = CMIP5()
-fem = FoodEmission()
 
 
 def authenticate(username, password):
@@ -51,7 +50,7 @@ def time(temperature):
 
     """
     temperature = float(temperature)
-    emissions = fem.foodAverage(
+    emissions = FoodEmission.foodAverage(
         current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     return str( cmip5.invTrace(emissions, temperature) )
 
@@ -80,12 +79,12 @@ def emission(year=2200):
     """
     step = 25
     user_id = current_identity.id
-    
+
     return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [
         {'color': 'red', 'data': cmip5.worstCase(year, step=step)[1]},
         {'color': 'green', 'data': cmip5.bestCase(year, step=step)[1]},
         {'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(
-            user_id)) + float(fem.foodAverage(user_id)), year, step=step)[1]}
+            user_id)) + float(FoodEmission.foodAverage(user_id)), year, step=step)[1]}
     ]})
 
 
@@ -115,7 +114,7 @@ def vehicleArray(distance, time):
                 schema:
                     type: string
     """
-    return jsonify({'vehicleArray': VehicleCalculator.vehicleCalc(float(distance), float(time))})
+    return jsonify({'vehicleArray': VehicleCalculator.calculateSingleEmission(float(distance), float(time))})
 
 
 @app.route('/data/polution/<vehicle>/<distance>')
@@ -183,8 +182,8 @@ def register():
 @jwt_required()
 def avg_emissions():
 
-    return str( 
-        fem.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
+    return str(
+        FoodEmission.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     )
 
 @app.route("/user/cal/<user_id>")
@@ -213,7 +212,7 @@ def calendar(user_id):
         .dicts())
 
     return jsonify(data)
-    
+
 @app.route("/user/datapoint", methods=["POST"])
 @jwt_required()
 def add_datapoint():
@@ -244,12 +243,12 @@ def add_datapoint():
                     type: string
     """
     dataPoint = namedtuple('Struct', request.json.keys())(*request.json.values())
-    
+
     print(dataPoint)
     category = dataPoint.dataType.lower()
     gag = 0
     if category == "eat":
-        gag = fem.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0])/1000)
+        gag = FoodEmission.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0])/1000)
     elif category == "commute":
         gag = VehicleCalculator.polutionCalc(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0]))
 
@@ -259,7 +258,7 @@ def add_datapoint():
     elif dataPoint.date == "Yesterday":
         d = date.today() - timedelta(days=1)
     else:
-        d = date.fromtimestamp(dataPoint.date) 
+        d = date.fromtimestamp(dataPoint.date)
 
     res = DataPoint.create(user=current_identity.id, gag=gag, time=d, category=category)
     return str(res.id)

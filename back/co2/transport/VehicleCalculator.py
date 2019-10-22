@@ -15,7 +15,7 @@ class VehicleCalculator():
 	UK_avg = 8.46 / 365
 
 	@staticmethod
-	def vehicleCalc(distance, time):
+	def calculateSingleEmission(distance, time):
 		hourtime = time / 3600
 		speed = distance/hourtime
 		options = []
