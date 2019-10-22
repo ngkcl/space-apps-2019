@@ -11,5 +11,5 @@ jobs:
       run: |
         docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
         docker build . --file Dockerfile --tag app:latest
-        docker tag app:latest docker.pkg.github.com/ngkcl/space-apps-2019/app:${GITHUB_SHA}
-        docker push docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | cut -b1-8)
+        docker tag app:latest docker.pkg.github.com/ngkcl/space-apps-2019/space-apps-2019:${GITHUB_SHA}
+        docker push docker.pkg.github.com/ngkcl/space-apps-2019/space-apps-2019:$(echo $GITHUB_SHA | cut -b1-8)
