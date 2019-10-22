@@ -6,7 +6,6 @@ RUN yes | pacman -S python-setuptools
 RUN yes | pacman -S python-pip
 
 COPY pyproject.toml /app
-COPY poetry.lock /app
 
 WORKDIR "/app"
 
