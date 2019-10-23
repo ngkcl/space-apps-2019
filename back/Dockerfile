@@ -1,20 +1,12 @@
 FROM archlinux/base
 
 RUN yes | pacman -Sy
-RUN yes | pacman -S poetry && mkdir /app
-RUN yes | pacman -S python-setuptools python-pip
+RUN mkdir /app
+RUN yes | pacman -S python-flask python-flask-jwt python-flasgger python-peewee
+RUN yes | pacman -S python-psycopg2 python-numpy python-scipy python-matplotlib jupyter
 
-COPY pyproject.toml /app/
+COPY ./ /app/
+WORKDIR /app/
 
-WORKDIR "/app"
-
-RUN poetry config settings.virtualenvs.create false && poetry install
-
-COPY ./* /app/
-
-
-EXPOSE 9999
-EXPOSE 5000
-EXPOSE 8888
-
+EXPOSE 80
 ENTRYPOINT bash ./run.sh
