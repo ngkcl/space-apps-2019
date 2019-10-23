@@ -1,6 +1,6 @@
 #/bin/bash
 
-jupyter notebook --config=./jupyter_notebook_config.py &
+jupyter notebook --config=./jupyter_notebook_config.py --allow-root &
 
 
 if [[ -z $PORT ]]; then
