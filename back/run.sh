@@ -1,6 +1,6 @@
 #/bin/bash
 
-# jupyter notebook --config=./config.py &
+jupyter notebook --config=./jupyter_notebook_config.py &
 
 
 if [[ -z $PORT ]]; then
