@@ -16,13 +16,13 @@ jobs:
       run: |
         docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}
         docker build . --file Dockerfile --tag app:latest
-        docker tag app:latest docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | cut -b1-8)
-        docker push docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | cut -b1-8)
-        sed -i "s/baf7927b/$(echo $GITHUB_SHA | cut -b1-8)/" deploy.yaml 
+        docker tag app:latest docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | head -c7)
+        docker push docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | head -c7)
+        sed "s/baf7927b/$(echo $GITHUB_SHA | head -c7)/" deploy.yaml > $GITHUB_WORKSPACE/deployment.yml
     - name: Deploy to DigitalOcean Kubernetes
       uses: docker://lachlanevenson/k8s-kubectl
       with:
-        args: --kubeconfig=/github/workspace/.kubeconfig apply -n footprints -f /github/workspace/back/deployment.yml
+        args: --kubeconfig=/github/workspace/.kubeconfig apply -n footprints -f /github/workspace/deployment.yml
     - name: Verify deployment
       uses: docker://lachlanevenson/k8s-kubectl
       with:
