@@ -16,8 +16,7 @@ spec:
     spec:
       volumes:
       - name: notebooks
-        persistentVolumeClaim:
-          claimName: block-pvc
+        emptyDir: {}
       containers:
       - image: docker.pkg.github.com/ngkcl/space-apps-2019/app:{tag}
         name: app
