@@ -15,7 +15,7 @@ jobs:
       working-directory: ./back
       run: |
         docker build . --file Dockerfile --tag app:latest
-    - name: Publihs the Docker image
+    - name: Publish the Docker image
       working-directory: ./back
       run: |
         docker login docker.pkg.github.com -u ${GITHUB_ACTOR} -p ${{ secrets.GITHUB_TOKEN }}

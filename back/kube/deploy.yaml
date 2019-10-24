@@ -14,12 +14,19 @@ spec:
       labels:
         app: app
     spec:
+      volumes:
+      - name: notebooks
+        persistentVolumeClaim:
+          claimName: block-pvc
       containers:
       - image: docker.pkg.github.com/ngkcl/space-apps-2019/app:{tag}
         name: app
         ports:
         - containerPort: 80
         - containerPort: 8888
+        volumeMounts:
+        - name: notebooks
+          mountPath: /app/notebooks
         env:
         - name: PORT
           value: "80"
