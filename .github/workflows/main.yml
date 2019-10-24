@@ -18,7 +18,7 @@ jobs:
         docker build . --file Dockerfile --tag app:latest
         docker tag app:latest docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | head -c7)
         docker push docker.pkg.github.com/ngkcl/space-apps-2019/app:$(echo $GITHUB_SHA | head -c7)
-        sed "s/{tag}/$(echo $GITHUB_SHA | head -c7)/" deploy.yaml > $GITHUB_WORKSPACE/deployment.yml
+        sed "s/{tag}/$(echo $GITHUB_SHA | head -c7)/" ./kube/deploy.yaml > $GITHUB_WORKSPACE/deployment.yml
     - name: Deploy to DigitalOcean Kubernetes
       uses: docker://lachlanevenson/k8s-kubectl
       with:

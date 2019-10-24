@@ -1,0 +1,9 @@
+ingress:
+  enabled: true
+  hosts: 
+    - dashboard.footprints-space-apps.co
+  annotations:
+    "nginx.ingress.kubernetes.io/secure-backends": "true"
+rbac:
+  create: true
+  clusterAdminRole: true

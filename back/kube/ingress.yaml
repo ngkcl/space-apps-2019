@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-app
+  namespace: footprints
+  annotations:
+    # use the shared ingress-nginx
+    # kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: app.footprints-space-apps.co
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: app-service
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:  
+  name: ingress-notebook
+  namespace: footprints
+  annotations:
+    # use the shared ingress-nginx
+    # kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: notebook.footprints-space-apps.co
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: app-service
+          servicePort: 8888

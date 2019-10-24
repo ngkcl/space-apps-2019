@@ -1,0 +1,11 @@
+---
+provider: digitalocean
+digitalocean:
+  # create the API token at https://cloud.digitalocean.com/account/api/tokens
+  # needs read + write
+  apiToken: "62555dc875b7488cd7c955ae8e3acbc53287ad5bd2b0c4262eb4b49d38dd5c71"
+domainFilters:
+  # domains you want external-dns to be able to edit
+  - footprints-space-apps.co
+rbac:
+  create: true

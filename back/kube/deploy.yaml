@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
+  namespace: footprints
 spec:
   replicas: 1
   revisionHistoryLimit: 1
@@ -18,9 +19,17 @@ spec:
         name: app
         ports:
         - containerPort: 80
+        - containerPort: 8888
         env:
         - name: PORT
           value: "80"
+        - name: DB
+          value: "postgres"
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: psql-postgresql
+              key: postgresql-password
       imagePullSecrets:
       - name: regcred
 
