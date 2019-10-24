@@ -32,7 +32,7 @@ export default class LoginScreen extends React.Component {
 		formData.append("password", this.state.password)
 		let response = await axios({
 			method: 'post',
-			url: 'http://10.70.43.220:5000/login',
+			url: 'http://app.footprints-space-apps.co/login',
 			data: formData
 		});
 
@@ -48,7 +48,7 @@ export default class LoginScreen extends React.Component {
 		formData.append("password", "password")
 		let response = await axios({
 			method: 'post',
-			url: 'http://10.70.43.220:5000/login',
+			url: 'http://app.footprints-space-apps.co/login',
 			data: formData
 		});
 

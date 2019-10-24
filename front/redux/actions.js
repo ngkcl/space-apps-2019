@@ -8,7 +8,7 @@ import axios from 'axios';
 import store from '../redux/store';
 // ---------------------
 
-const API_URL = 'http://10.70.43.220:5000';
+const API_URL = 'http://app.footprints-space-apps.co';
 
 // Async functions constants:
 export const GET_LOCATION_START = 'GET_LOCATION_START';

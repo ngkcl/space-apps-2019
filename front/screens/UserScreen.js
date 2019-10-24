@@ -46,7 +46,7 @@ class UserScreen extends React.Component {
     }
 
     async temperatre() {
-        let { data } = await axios.get("http://10.70.43.220:5000/data/temperature/2200")
+        let { data } = await axios.get("http://app.footprints-space-apps.co/data/temperature/2200")
 
         this.setState({
             labels: data.labels,
@@ -56,21 +56,21 @@ class UserScreen extends React.Component {
     }
 
     async time() {
-        let { data } = await axios.get("http://10.70.43.220:5000/data/time/2")
+        let { data } = await axios.get("http://app.footprints-space-apps.co/data/time/2")
         this.setState({
             time: data
         })
     }
 
     async avg_emissions() {
-        let { data } = await axios.get("http://10.70.43.220:5000/user/avg_emissions")
+        let { data } = await axios.get("http://app.footprints-space-apps.co/user/avg_emissions")
         this.setState({
             avg_emissions: data
         })
     }
 
     async calendar() {
-        let { data } = await axios.get("http://10.70.43.220:5000/user/cal/11")
+        let { data } = await axios.get("http://app.footprints-space-apps.co/user/cal/11")
         this.setState({
             calendar: data.map(el => {
                 let d = new Date(el.time);
