@@ -6,7 +6,7 @@ import {
     View
 } from 'react-native'
 
-export default class UserScreen extends React.Component {
+export default class PlanScreen extends React.Component {
     constructor(props) {
         super(props);
     }

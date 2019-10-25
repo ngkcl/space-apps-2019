@@ -38,6 +38,8 @@ import SignUpScreen from './screens/SignUpScreen';
 import AddDataSelectionScreen from './screens/AddDataSelectionScreen';
 
 import AddButton from './components/AddButton';
+import PlanScreen from './screens/PlanScreen';
+import ReportScreen from './screens/ReportScreen';
 
 
 // NOTE: DEV ----------------------
@@ -48,13 +50,19 @@ const TabNavigator = createBottomTabNavigator({
   Map: {
 	screen: HomeScreen
   },
+  Plan: {
+	  screen: PlanScreen
+  },
   Add: {
 	screen: AddScreen,
 	navigationOptions: ({ navigation }) => ({
 	  tabBarIcon: (<AddButton />)
 	})
   },
-  User: {
+  Report: {
+	screen: ReportScreen
+  },
+  Account: {
 	screen: UserScreen
   },
 }, {
@@ -66,9 +74,13 @@ const TabNavigator = createBottomTabNavigator({
 	  let iconName = '';
 	  if (routeName == 'Map') {
 		iconName = `map${focused ? '' : '-outline'}`;
-	  } else if (routeName == 'User') {
-		iconName = `account`;
-	  }
+	  } else if (routeName == 'Plan') {
+		iconName = `checkbox-marked-circle${focused ? '' : '-outline'}`;
+	  } else if (routeName == 'Report') {
+		iconName = `clipboard-text${focused ? '' : '-outline'}`;
+	  } else if (routeName == 'Account') {
+		iconName = `account${focused ? '' : '-outline'}`;
+	  } 
 
 	  return <IconComponent name={iconName} size={25} color={tintColor} />;
 	},
@@ -134,7 +146,7 @@ const AppContainer = createAppContainer(createSwitchNavigator(
 		Auth: AuthStack,
 		App: HomeStack
 	}, {
-		initialRouteName: 'Auth'
+		initialRouteName: 'App'
 	}
 ));
 

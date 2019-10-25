@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import {
     Animated,
     TouchableHighlight,
-    View
+    View,
+    StyleSheet
 } from "react-native";
 
 import * as Animatable from 'react-native-animatable';
@@ -54,12 +55,22 @@ const AddButton = (props) => {
     }
 
     return (
-        <Animatable.View style={styles.animView}>
+        <Animatable.View style={[styles.animView, {
+            transform: [{ scale: scaleAnim }, {
+                translateY: 
+                scaleAnim.interpolate({
+                    inputRange: [1, 1.3],
+                    outputRange: [0, -24]
+                })
+            }]
+        }]}>
             <TouchableHighlight
                 style={styles.buttonHighlight}
                 onPress={() => _onButtonPress()}
             >
-                <Animatable.View style={styles.animIcon}>
+                <Animatable.View style={{
+                    opacity: scaleAnim 
+                }}>
                     <Icon name="plus" size={24} color="#F8F8F8" />
                 </Animatable.View>
             </TouchableHighlight>
@@ -79,17 +90,7 @@ const styles = StyleSheet.create({
     animView: {
         position: 'absolute',
         alignItems: 'center',
-        transform: [{ scale: scaleAnim }, {
-            translateY: 
-            scaleAnim.interpolate({
-                inputRange: [1, 1.3],
-                outputRange: [0, -24]
-            })
-        }]
     },
-    animIcon: {
-        opacity: scaleAnim 
-    }
 })
 
 const mapDispatchToProps = dispatch => ({
