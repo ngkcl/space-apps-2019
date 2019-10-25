@@ -1,0 +1,6 @@
+global:
+  postgresql:
+    postgresqlDatabase: default
+    postgresqlUsername: admin
+persistence:
+  size: 5Gi

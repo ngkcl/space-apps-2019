@@ -2,9 +2,13 @@ from peewee import *
 from playhouse.sqlite_ext import *
 from os.path import dirname, abspath
 from datetime import date, timedelta
+from os import environ
 
-
-db = SqliteDatabase(dirname(abspath(__file__)) + '/user.db')
+db_type = environ.get("DB", "sqlite")
+if db_type == "sqlite":
+    from db.sqlite import db
+elif db_type == "postgres":
+    from db.postgres import db
 
 class User(Model):
     username = TextField(index=True, unique=True)

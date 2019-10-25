@@ -30,7 +30,7 @@ export default class SignUpScreen extends React.Component {
 		if(this.state.password == this.state.confirmPassword){ // to add password strength in future
 			let res = await axios({
 			  method: 'post',
-			  url: 'http://10.70.43.220:5000/user/register',
+			  url: 'http://app.footprints-space-apps.co/user/register', //TODO: Global consts
 			  data: this.state
 			});
 
