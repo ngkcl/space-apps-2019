@@ -1,9 +1,0 @@
-{
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://u2-pt7.hjklmn.front.exp.direct",
-  "packagerNgrokUrl": "https://packager.u2-pt7.hjklmn.front.exp.direct",
-  "ngrokPid": 3414,
-  "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 3384
-}

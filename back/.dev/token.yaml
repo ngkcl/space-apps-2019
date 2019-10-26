@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: digitalocean
+  namespace: kube-system
+stringData:
+  access-token: "c7fbf35e85e8206aa74d8fe9e509074c6c7577248666034373859967bf66e7ac" 
