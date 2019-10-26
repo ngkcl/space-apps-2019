@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "space-apps-2019",
-    "slug": "space-apps-2019",
+    "name": "nasa-space-apps-2019",
+    "slug": "nasa-space-apps-2019",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
