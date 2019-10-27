@@ -47,7 +47,21 @@ def index():
 @jwt_required()
 def time(temperature):
     """
-
+    Time until temperature
+    ---
+    produces:
+      - application/json
+    parameters:
+      - in: path
+        name: temperature
+        required: true
+        schema:
+            type: string
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
     """
     temperature = float(temperature)
     emissions = FoodCalculator.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
@@ -181,7 +195,15 @@ def register():
 @app.route("/user/avg_emissions")
 @jwt_required()
 def avg_emissions():
-
+    """
+    Average user emissions
+    ---
+    responses:
+        200:
+            content:
+                schema:
+                    type: string
+    """
     return str(
         FoodCalculator.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     )

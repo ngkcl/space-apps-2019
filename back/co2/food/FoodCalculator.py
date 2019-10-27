@@ -40,7 +40,7 @@ class FoodCalculator():
 
     @staticmethod
     def foodAverage(user_id):
-        meanEmission = self.foodPercent * self.UK_avg
+        meanEmission = FoodCalculator.foodPercent * FoodCalculator.UK_avg
         yourMean = avgQuery(user_id, 'eat')
 
         return (yourMean - meanEmission)/ 1000 * 365 # If you're more efficient than the mean, we reduce your avg emission score

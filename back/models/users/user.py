@@ -1,6 +1,5 @@
 from peewee import *
 from playhouse.sqlite_ext import *
-from os.path import dirname, abspath
 from datetime import date, timedelta
 from os import environ
 
@@ -43,15 +42,19 @@ def avgQuery(user_id, category):
     return (dataPoints[0].emission_avg or 0) / 7
 
 
+if not User.table_exists():
+    User.create_table()
+
+if not DataPoint.create_table():
+    DataPoint.create_table()
 
 if __name__ == "__main__":
+    print(sys.path)
     sys.path.append('../')
 
     from co2.food_test import FoodEmission
     import datetime
     fm = FoodEmission()
-    User.create_table()
-    DataPoint.create_table()
 
     User.create(username='Feynman',password='password')
 
