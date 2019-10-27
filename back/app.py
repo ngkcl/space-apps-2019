@@ -50,8 +50,7 @@ def time(temperature):
 
     """
     temperature = float(temperature)
-    emissions = FoodCalculator.foodAverage(
-        current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
+    emissions = FoodCalculator.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     return str( cmip5.invTrace(emissions, temperature) )
 
 

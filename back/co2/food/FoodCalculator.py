@@ -35,11 +35,11 @@ class FoodCalculator():
         return getData('Tomatoes')[0][1]
 
     @staticmethod
-    def calculateSingleEmission(self, foodItem, mass):
+    def calculateSingleEmission(foodItem, mass):
         return mass * eval("self." + foodItem + "()")
 
     @staticmethod
-    def foodAverage(self, user_id):
+    def foodAverage(user_id):
         meanEmission = self.foodPercent * self.UK_avg
         yourMean = avgQuery(user_id, 'eat')
 
