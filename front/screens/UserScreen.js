@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-<<<<<<< HEAD
     Platform,
     StyleSheet,
     Image,
@@ -10,13 +9,6 @@ import {
     NativeModules,
     Animated,
     TouchableOpacity
-=======
-    
-    StyleSheet,
-    Image,
-    View,
-    Dimensions
->>>>>>> 3e7428e6bdf276b7e627455278bdba2db7782d38
 } from 'react-native'
 
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -27,7 +19,6 @@ import {
 } from "galio-framework"
 
 import profile from "../assets/profile.jpg"
-<<<<<<< HEAD
 import { white } from 'ansi-colors'
 
 import { List, ListItem } from "native-base"
@@ -54,14 +45,11 @@ const settings = [
         ]
     }
 ]
-=======
->>>>>>> 3e7428e6bdf276b7e627455278bdba2db7782d38
 
 export default class UserScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-<<<<<<< HEAD
             activeCard: 0,
             statusBar: 20,
             addPading: new Animated.Value(15),
@@ -75,25 +63,17 @@ export default class UserScreen extends React.Component {
 
         } else {
             this.state.statusBar = NativeModules.StatusBarManager.HEIGHT;
-=======
-            activeCard: 0
->>>>>>> 3e7428e6bdf276b7e627455278bdba2db7782d38
         }
     }
 
     _renderItem({ item, index }) {
         return (
             <Block card style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "white" }}>
-<<<<<<< HEAD
                 <Text style={{}}>{index}</Text>
-=======
-                <Text style={{}}>{ index }</Text>
->>>>>>> 3e7428e6bdf276b7e627455278bdba2db7782d38
             </Block>
         )
     }
 
-<<<<<<< HEAD
     render() {
         return (
             <View style={{ flex: 1, flexDirection: "column" }}>
@@ -168,38 +148,6 @@ export default class UserScreen extends React.Component {
                     <View style={{ flex: 0.5 }}></View>
                 </View> */}
 
-=======
-    render () { 
-        return(
-            <View style={{ flex: 1, flexDirection: "column" }}>
-                <View style={{ backgroundColor: "#ff147c" , paddingTop: 40, paddingHorizontal: 40, flexDirection: "row", justifyContent: "space-evenly" }}>
-                    <Image source={ profile } style={{ height: 50, width: 50, borderRadius: 50 }}></Image>
-                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", color: "white" }}>
-                        <Text h1 size={23} color="white">Mr Robot</Text>
-                        <Text h2 size={18} color="white">London</Text>
-                    </View>
-                </View>
-                <Pagination 
-                    dotColor={'rgba(255, 255, 255, 0.92)'}
-                    inactiveDotColor={"black"}
-                    inactiveDotOpacity={0.4}
-                    inactiveDotScale={0.6}
-                    dotsLength={3} 
-                    activeDotIndex={this.state.activeCard}
-                    carouselRef={this._carousel} 
-                    tappableDots={!!this._carousel} ></Pagination>
-                <Carousel
-                    ref={(c) => { this._carousel = c; }}
-                    data={["red", "blue", "green"]}
-                    renderItem={this._renderItem}
-                    sliderWidth={ Dimensions.get("window").width }
-                    itemWidth={ Dimensions.get("window").width - 60 }
-                    centerContent={true}
-                    contentContainerCustomStyle={{ paddingBottom: 10 }}
-                    style={{ flex:1, overflow: "auto", alignSelf: "stretch" }}
-                    onSnapToItem={(index) => this.setState({ activeCard: index }) }
-                />
->>>>>>> 3e7428e6bdf276b7e627455278bdba2db7782d38
             </View>
         )
     }

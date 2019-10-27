@@ -146,7 +146,7 @@ const AppContainer = createAppContainer(createSwitchNavigator(
 		Auth: AuthStack,
 		App: HomeStack
 	}, {
-		initialRouteName: 'App'
+		initialRouteName: 'Auth'
 	}
 ));
 
