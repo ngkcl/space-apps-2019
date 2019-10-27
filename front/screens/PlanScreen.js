@@ -37,6 +37,8 @@ import Constants from 'expo-constants';
 
 import uuid from 'uuid/v4';
 
+import * as Progress from 'react-native-progress'
+
 // import SwipeCard from '../components/SwipeCard';
 
 SAMPLE_CARD_DATA = [
@@ -45,7 +47,9 @@ SAMPLE_CARD_DATA = [
         type: 'transport',
         action_type: 'car',
         action_date: 'today',
-        text: `Today you used an Uber for 1 hour, taking the bike instead tomorrow will improve your carbon emissions by 5%`,
+        text: <Text p>Today you used an <Text p bold>Uber 🚗</Text> for <Text bold p>3.31 km</Text>, taking the <Text bold p>bike 🚲</Text> instead tomorrow will improve your carbon emissions by <Text bold p>5%</Text></Text>,
+        steps: 1,
+        currentStep: 0,
         substitute_timespan: 'week',
         substitute: 'bike',
         substitute_times: 4
@@ -55,7 +59,9 @@ SAMPLE_CARD_DATA = [
         type: 'food',
         action_type: 'eat',
         action_date: 'week',
-        text: `Today you used a car for 3 hour, taking the bike instead tomorrow will improve your carbon emissions by 10%`,
+        text: <Text p>This week you ate <Text bold p>700 g</Text> of <Text bold p>beef 🐮</Text>, eating the same amount of <Text bold p>chicken 🐔</Text> this week would improve your emissions by <Text bold p>10%</Text></Text>,
+        steps: 700,
+        currentStep: 0,
         substitute_timespan: 'week',
         substitute: 'bike',
         substitute_times: 4
@@ -101,15 +107,15 @@ export default class PlanScreen extends React.Component {
                 {/* TODO: Actions */}
             {/* </CardItem> */}
             <CardItem style={styles.cardContent}>
-                <Text p>
-                    {item.text}
-                </Text>
-                {/* <Right>
-                    <Text style={styles.seeMore}>See more...</Text>
-                </Right> */}
+                {item.text}
             </CardItem>
-
-        </Card>   
+            <CardItem style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <Text h5 bold style={{color: '#ff147c'}}>{item.currentStep} / {item.steps}</Text>
+            </CardItem>
+            <CardItem style={{display: 'flex', justifyContent: 'center', paddingTop: 2}}>
+                <Progress.Bar progress={.01} width={null} style={{flex: 1}} color="#ff147c"/>
+            </CardItem>
+        </Card> 
     );
 
     render () { 
@@ -152,8 +158,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 10,
         shadowColor: 'black',
-        shadowRadius: 10,
-        shadowOffset: { width: 5, height: 5},
+        shadowRadius: 7,
+        shadowOffset: { width: 5, height: 7},
         shadowOpacity: .5
     },
     cardHeader: {
