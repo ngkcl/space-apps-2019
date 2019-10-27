@@ -25,7 +25,7 @@ import store from './redux/store';
 import {
   Ionicons,
   MaterialIcons,
-  MaterialCommunityIcons,
+  MaterialCommunityIcons  
 } from '@expo/vector-icons';
 
 // Screens:
