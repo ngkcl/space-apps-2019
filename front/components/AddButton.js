@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         width: SIZE,
         height: SIZE,
         borderRadius: SIZE / 2,
-        backgroundColor: '#48A2F8',
+        backgroundColor: '#ff147c',
     },
     animView: {
         position: 'absolute',
