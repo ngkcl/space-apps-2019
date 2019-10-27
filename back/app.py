@@ -50,7 +50,7 @@ def time(temperature):
 
     """
     temperature = float(temperature)
-    emissions = FoodEmission.foodAverage(
+    emissions = FoodCalculator.foodAverage(
         current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     return str( cmip5.invTrace(emissions, temperature) )
 
@@ -80,11 +80,12 @@ def emission(year=2200):
     step = 25
     user_id = current_identity.id
 
-    return jsonify({'lables': cmip5.worstCase(year, step=step)[0], 'datasets': [
-        {'color': 'red', 'data': cmip5.worstCase(year, step=step)[1]},
-        {'color': 'green', 'data': cmip5.bestCase(year, step=step)[1]},
-        {'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(
-            user_id)) + float(FoodEmission.foodAverage(user_id)), year, step=step)[1]}
+    return jsonify({
+        'lables': cmip5.worstCase(year, step=step)[0],
+        'datasets': [
+            {'color': 'red', 'data': cmip5.worstCase(year, step=step)[1]},
+            {'color': 'green', 'data': cmip5.bestCase(year, step=step)[1]},
+            {'color': '#AAA', 'data': cmip5.extrapolateOwnDeltaT(float(VehicleCalculator.vehicleAvg(user_id)) + float(FoodCalculator.foodAverage(user_id)), year, step=step)[1]}
     ]})
 
 
@@ -183,7 +184,7 @@ def register():
 def avg_emissions():
 
     return str(
-        FoodEmission.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
+        FoodCalculator.foodAverage(current_identity.id) + VehicleCalculator.vehicleAvg(current_identity.id) + 8.44
     )
 
 @app.route("/user/cal/<user_id>")
@@ -248,7 +249,7 @@ def add_datapoint():
     category = dataPoint.dataType.lower()
     gag = 0
     if category == "eat":
-        gag = FoodEmission.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0])/1000)
+        gag = FoodCalculator.calculateSingleEmission(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0])/1000)
     elif category == "commute":
         gag = VehicleCalculator.polutionCalc(dataPoint.selection.lower(), int(dataPoint.quantity.split(' ')[0]))
 
