@@ -44,8 +44,8 @@ export default class LoginScreen extends React.Component {
 
 	async demo() {
 		let formData = new FormData()
-		formData.append("username", "bob0")
-		formData.append("password", "password")
+		formData.append("username", "demo")
+		formData.append("password", "demopassword")
 		let response = await axios({
 			method: 'post',
 			url: 'http://app.footprints-space-apps.co/login',

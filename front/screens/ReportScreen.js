@@ -25,6 +25,8 @@ const chartConfig = {
     color: (opacity = 1) => `rgba(44, 44, 44, ${opacity})`,
 }
 
+const API_ADDR = 'http://app.footprints-space-apps.co';
+
 class ReportScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -46,7 +48,7 @@ class ReportScreen extends React.Component {
     }
 
     async temperatre() {
-        let { data } = await axios.get("http://10.70.43.220:5000/data/temperature/2200")
+        let { data } = await axios.get(API_ADDR + "/data/temperature/2200")
 
         this.setState({
             labels: data.labels,
@@ -56,21 +58,21 @@ class ReportScreen extends React.Component {
     }
 
     async time() {
-        let { data } = await axios.get("http://10.70.43.220:5000/data/time/2")
+        let { data } = await axios.get(API_ADDR + "/data/time/2")
         this.setState({
             time: data
         })
     }
 
     async avg_emissions() {
-        let { data } = await axios.get("http://10.70.43.220:5000/user/avg_emissions")
+        let { data } = await axios.get(API_ADDR + "/user/avg_emissions")
         this.setState({
             avg_emissions: data
         })
     }
 
     async calendar() {
-        let { data } = await axios.get("http://10.70.43.220:5000/user/cal/11")
+        let { data } = await axios.get(API_ADDR + "/user/cal/11")
         this.setState({
             calendar: data.map(el => {
                 let d = new Date(el.time);
@@ -167,10 +169,10 @@ class ReportScreen extends React.Component {
                         <Block style={styles.textBlock1}>
                             <Text h4 bold style={styles.dataHeading}>Here's some cool data on your eco impact</Text>
 
-                            <Text p style={{marginBottom: 10}}>Based on your living habits, for the past two weeks your personal average emission of CO2 (in metric tons per year) is</Text>
+                            <Text p style={{marginBottom: 10}}>Based on your daily life, for the past week your average emission of CO2 (in MT/year) is</Text>
                             
                             <Text h3 bold>{this.state.avg_emissions.toFixed(1)}</Text>
-                            <Text p style={{marginTop: 10}}>That's not too bad! Last month the same metric was at <Text bold>{Math.round(this.state.avg_emissions + 3)}</Text>. That's an improvement of <Text bold>{(100 - ((this.state.avg_emissions/(this.state.avg_emissions+3))*100)).toFixed(2)}%</Text> !</Text>
+                            <Text p style={{marginTop: 10}}>Oops! Last month the same metric was at <Text bold>{(this.state.avg_emissions - 1.5).toFixed(1)}</Text>. That's an increase of <Text color="red" bold>{(100 - ((this.state.avg_emissions/(this.state.avg_emissions+3))*100)).toFixed(2)}%</Text> !</Text>
                         </Block>
 
                         <LineChart
